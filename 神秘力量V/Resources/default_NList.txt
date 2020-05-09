@@ -1,0 +1,12 @@
+TP3Helper.exe|0|%DNF%\TP3Helper.exe
+TPHelper.exe|0|%DNF%\TCLS\TenProtect\TP\TPHelper\TPHelper.exe
+TPWeb.exe|0|%DNF%\TCLS\TenProtect\TP\TPHelper\TPWeb.exe
+tgp_gamead.exe|0|%DNF%\start\Cross\Apps\DNFTips\tgp_gamead\tgp_gamead.exe
+AdvertDialog.exe|0|%DNF%\TCLS\AdvertDialog.exe
+AdvertTips.exe|0|%DNF%\TCLS\AdvertTips.exe
+BackgroundDownloader.exe|0|%DNF%\TCLS\BackgroundDownloader.exe
+qbclient.exe|2|%DNF%\start\Cross\Apps\DNFAD\qbclient\qbclient.exe
+DNFADApp.dll|2|%DNF%\start\Cross\Apps\DNFAD\DNFADApp.dll
+GameDataPlatformClient.dll|2|%DNF%\start\Cross\Apps\DNFAD\GameDataPlatformClient.dll
+res.vfs|2|%DNF%\start\Cross\Apps\DNFAD\res.vfs
+DNFTips.dll|2|%DNF%\start\Cross\Apps\DNFTips\DNFTips.dll
