@@ -61,6 +61,16 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property bitbug_favicon() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("bitbug_favicon", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  查找类似 TP3Helper.exe|0|%DNF%\TP3Helper.exe
         '''TPHelper.exe|0|%DNF%\TCLS\TenProtect\TP\TPHelper\TPHelper.exe
         '''TPWeb.exe|0|%DNF%\TCLS\TenProtect\TP\TPHelper\TPWeb.exe
@@ -97,18 +107,8 @@ Namespace My.Resources
         '''②驱动拦截-拦截设置-注册驱动服务-启动驱动服务
         '''
         '''更新日志：
-        '''2020-05-06 Ver：Beta 0.0.0.4
-        '''①修改驱动拦截清单中引用功能的拦截方式为精确匹配
-        '''②修复驱动拦截清单中，删除功能自动删除所有清单的BUG
-        '''③新增提交建议的功能
-        '''④添加遇到未能转换部分或所有标识引用功能的提示功能
-        '''
-        '''2020-04-27 Ver：Beta 0.0.0.3
-        '''①修复最小化按钮功能不正常的BUG
-        '''②修复手动ACL禁用失败判定成功的BUG
-        '''③修复手动IFEO可以操作非exe文件的BUG
-        '''
-        '''2 [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''2020-05-09 Ver:0.1.0.0
+        '''1.初版本发布 的本地化字符串。
         '''</summary>
         Friend ReadOnly Property Hello() As String
             Get
@@ -148,18 +148,18 @@ Namespace My.Resources
         
         '''<summary>
         '''  查找类似 若Win10系统出现【未能转换部分或所有标志引用】的提示，则您的系统可能存在如下问题：
-        '''1、系统权限异常，如非法启用Administrator用户
+        '''1、系统权限异常，如非法启用并使用Administrator用户(非原生安装系统/使用网络精简系统多数为此原因导致)
         '''2、账户权限异常，如requireAdministrator请求未按Windows默认设置审批
         '''3、系统文件缺失
-        '''4、某管家某卫士的NC操作
+        '''4、某管家某卫士某精灵的不可描述的骚操作
         '''
-        '''解决方法一（以DNF举例）：
-        '''1、右键文件夹-属性-安全-高级-更改权限(没有这个按钮忽略)
+        '''解决方法一：
+        '''1、右键游戏文件夹-属性-安全-高级-更改权限(没有这个按钮可忽略)
         '''2、点击禁用继承-选择【从此对象中删除所有已继承的权限】（点击以后“权限条目”为空）
         '''3、添加-主体选择-输入Everyone-类型：允许-勾选完全控制-确定
         '''4、勾选【使用可从此对象继承的权限项目替换所有子对象的权限项目】-确定
         '''5、弹窗提示【这将使来自XXXXXX的可继承权限替换此对象的所有子对象的明确定义权限】-是-确定
-        '''6、稍等设置完后，本软件禁用功能可恢复正常
+        '''6、设置结束后，本软件禁用功能可恢复正常
         '''
         '''解决方法二：
         '''1、使用驱动拦截功能 的本地化字符串。

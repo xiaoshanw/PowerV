@@ -12,6 +12,8 @@
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Me.Icon = My.Resources.bitbug_favicon
+        Background_Icon.Icon = My.Resources.bitbug_favicon
         gHello.BringToFront()
         TextBox2.Text = My.Resources.Hello
         If Not IO.Directory.Exists(CONFIG) Then IO.Directory.CreateDirectory(CONFIG)
@@ -58,6 +60,33 @@
             Button19_Click(Me, e)
             Hide_Active = True
         End If
+        '检测驱动更新
+        Try
+            If IO.File.Exists(vLimit_SYS) Then
+                Dim tByte = IO.File.ReadAllBytes(vLimit_SYS)
+                If Not Enumerable.SequenceEqual(tByte, My.Resources.vLimit) Then
+                    If MsgBox("检测到vLimit驱动拦截更新，是否更新驱动文件", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                        Try
+                            For Each vline In ServiceProcess.ServiceController.GetDevices
+                                If vline.DisplayName = "vLimit" Then
+                                    If vline.Status = ServiceProcess.ServiceControllerStatus.Running Then
+                                        vline.Stop()
+                                    End If
+                                    Exit For
+                                End If
+                            Next
+                            IO.File.Delete(vLimit_SYS)
+                            IO.File.WriteAllBytes(vLimit_SYS, My.Resources.vLimit)
+                            MsgBox("更新成功，请进入驱动拦截界面重新启动拦截功能")
+                        Catch ex2 As Exception
+                            MsgBox("更新失败[" + ex2.Message + "]")
+                        End Try
+                    End If
+                End If
+            End If
+        Catch ex As Exception
+            printl(ex.Message)
+        End Try
     End Sub
 
     Private Sub Form1_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -639,7 +668,7 @@
     End Sub
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
-        tDPath.Text = "C:\Users\Public\Documents\vLimit\vLimit.sys"
+        tDPath.Text = vLimit_SYS
         tDFStatus.Text = "不存在"
         tDSStatus.Text = "未注册"
         tDRStatus.Text = "未运行"

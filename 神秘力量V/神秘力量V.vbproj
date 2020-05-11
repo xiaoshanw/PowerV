@@ -168,11 +168,13 @@
     <None Include="Resources\VoCytDefenderEx.exe" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\bitbug_favicon.ico" />
     <None Include="Resources\Win10ACLError.txt" />
     <None Include="Resources\qun.png" />
     <None Include="Resources\wx.png" />
     <None Include="Resources\Hello.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bitbug_favicon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

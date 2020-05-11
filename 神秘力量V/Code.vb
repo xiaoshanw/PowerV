@@ -5,6 +5,7 @@
     Public INI As String = CONFIG + "\config.ini"
     Public IFEO_PATH As String = Path_Fix(IO.Path.GetDirectoryName(INI) + "\VoCytDefenderEx.exe")
     Public vLimit_DAT As String = "C:\Users\Public\Documents\vLimit\vLimit.dat"
+    Public vLimit_SYS As String = "C:\Users\Public\Documents\vLimit\vLimit.sys"
     Public LastError As String
     Public Last_DNF_PID As Integer
     Public TREE_MANUAL_SELECT As Boolean = True

@@ -1444,7 +1444,6 @@ Partial Class Main
         '
         'Background_Icon
         '
-        Me.Background_Icon.Icon = CType(resources.GetObject("Background_Icon.Icon"), System.Drawing.Icon)
         '
         'gOther_Update
         '
@@ -1645,7 +1644,7 @@ Partial Class Main
         '
         'PictureBox1
         '
-        Me.PictureBox1.Image = Global.神秘力量V.My.Resources.Resources.qun
+        Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
         Me.PictureBox1.Location = New System.Drawing.Point(14, 20)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(238, 250)
@@ -1688,7 +1687,7 @@ Partial Class Main
         '
         'PictureBox2
         '
-        Me.PictureBox2.Image = Global.神秘力量V.My.Resources.Resources.wx
+        Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
         Me.PictureBox2.Location = New System.Drawing.Point(14, 20)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(100, 135)
@@ -1726,6 +1725,7 @@ Partial Class Main
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(792, 473)
+        Me.Controls.Add(Me.gDriver)
         Me.Controls.Add(Me.gNormalInfo)
         Me.Controls.Add(Me.gDriverInfo)
         Me.Controls.Add(Me.gExtra_Background)
@@ -1737,7 +1737,6 @@ Partial Class Main
         Me.Controls.Add(Me.gNList)
         Me.Controls.Add(Me.gOther_Money)
         Me.Controls.Add(Me.gHello)
-        Me.Controls.Add(Me.gDriver)
         Me.Controls.Add(Me.gExtra_BSOD)
         Me.Controls.Add(Me.gExtra_Purge)
         Me.Controls.Add(Me.gExtra_DNFCFG)
@@ -1748,7 +1747,6 @@ Partial Class Main
         Me.Controls.Add(Me.gGamePath)
         Me.Controls.Add(Me.tv)
         Me.Controls.Add(Me.Log)
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "Main"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form248.12"
