@@ -71,6 +71,7 @@ Partial Class Main
         Me.刷新ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.gNormal = New System.Windows.Forms.GroupBox()
+        Me.Button29 = New System.Windows.Forms.Button()
         Me.Button28 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
@@ -485,6 +486,7 @@ Partial Class Main
         Me.gNormal.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.gNormal.Controls.Add(Me.Button29)
         Me.gNormal.Controls.Add(Me.Button28)
         Me.gNormal.Controls.Add(Me.Button4)
         Me.gNormal.Controls.Add(Me.Button3)
@@ -496,11 +498,22 @@ Partial Class Main
         Me.gNormal.TabStop = False
         Me.gNormal.Text = "禁用设置"
         '
+        'Button29
+        '
+        Me.Button29.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button29.Location = New System.Drawing.Point(6, 78)
+        Me.Button29.Name = "Button29"
+        Me.Button29.Size = New System.Drawing.Size(520, 23)
+        Me.Button29.TabIndex = 6
+        Me.Button29.Text = "重置现有清单为默认清单"
+        Me.Button29.UseVisualStyleBackColor = True
+        '
         'Button28
         '
         Me.Button28.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button28.Location = New System.Drawing.Point(6, 103)
+        Me.Button28.Location = New System.Drawing.Point(6, 107)
         Me.Button28.Name = "Button28"
         Me.Button28.Size = New System.Drawing.Size(520, 23)
         Me.Button28.TabIndex = 5
@@ -534,11 +547,11 @@ Partial Class Main
         Me.Label4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(6, 311)
+        Me.Label4.Location = New System.Drawing.Point(6, 306)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(257, 36)
+        Me.Label4.Size = New System.Drawing.Size(281, 48)
         Me.Label4.TabIndex = 2
-        Me.Label4.Text = "说明：" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "①一键禁用：用适用绝大多数人的方案禁用插件" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "②一键恢复：将所有清单内插件还原"
+        Me.Label4.Text = "说明：" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "①一键禁用：用适用绝大多数人的方案禁用插件" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "②一键恢复：将所有清单内插件还原" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "③重置清单为默认清单：清除现有清单，重置为默认"
         '
         'gNormalInfo
         '
@@ -1725,6 +1738,8 @@ Partial Class Main
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(792, 473)
+        Me.Controls.Add(Me.gDList)
+        Me.Controls.Add(Me.gNormal)
         Me.Controls.Add(Me.gDriver)
         Me.Controls.Add(Me.gNormalInfo)
         Me.Controls.Add(Me.gDriverInfo)
@@ -1732,8 +1747,6 @@ Partial Class Main
         Me.Controls.Add(Me.gExtraInfo)
         Me.Controls.Add(Me.gOther_Contact)
         Me.Controls.Add(Me.gOther_Update)
-        Me.Controls.Add(Me.gNormal)
-        Me.Controls.Add(Me.gDList)
         Me.Controls.Add(Me.gNList)
         Me.Controls.Add(Me.gOther_Money)
         Me.Controls.Add(Me.gHello)
@@ -1937,4 +1950,5 @@ Partial Class Main
     Friend WithEvents CheckBox7 As CheckBox
     Friend WithEvents gDriverInfo As GroupBox
     Friend WithEvents TextBox16 As TextBox
+    Friend WithEvents Button29 As Button
 End Class

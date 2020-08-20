@@ -381,7 +381,7 @@
                         printl("Success")
                     Else
                         printl("Failed[" + LastError + "]")
-                        If LastError.Contains("未能转换部分或所有标志引用") Then ACL_Error = True
+                        If LastError.Contains("未能转换") Then ACL_Error = True
                     End If
                 Else
                     printf("ACL操作[禁用]")
@@ -693,7 +693,12 @@
 
     Private Sub DList_CellMouseDown(sender As Object, e As DataGridViewCellMouseEventArgs) Handles DList.CellMouseDown
         If e.Button = MouseButtons.Right Then
-            DList.Rows(e.RowIndex).Selected = True
+            Try
+                DList.Rows(e.RowIndex).Selected = True
+            Catch ex As Exception
+
+            End Try
+
         End If
     End Sub
 
@@ -1222,5 +1227,11 @@
         Else
             IO.File.Create(tStr).Close()
         End If
+    End Sub
+
+    Private Sub Button29_Click(sender As Object, e As EventArgs) Handles Button29.Click
+        Dim tStr = My.Resources.default_NList
+        WriteINI(INI, "Normal List", "List", String_to_Base64(tStr))
+        printl("重置成功")
     End Sub
 End Class

@@ -5,7 +5,7 @@ tgp_gamead.exe|0|%DNF%\start\Cross\Apps\DNFTips\tgp_gamead\tgp_gamead.exe
 AdvertDialog.exe|0|%DNF%\TCLS\AdvertDialog.exe
 AdvertTips.exe|0|%DNF%\TCLS\AdvertTips.exe
 BackgroundDownloader.exe|0|%DNF%\TCLS\BackgroundDownloader.exe
-qbclient.exe|2|%DNF%\start\Cross\Apps\DNFAD\qbclient\qbclient.exe
+qbclient.exe|2|%DNF%\start\Cross\Core\Stable\QBBlink\qbclient.exe
 DNFADApp.dll|2|%DNF%\start\Cross\Apps\DNFAD\DNFADApp.dll
 GameDataPlatformClient.dll|2|%DNF%\start\Cross\Apps\DNFAD\GameDataPlatformClient.dll
 res.vfs|2|%DNF%\start\Cross\Apps\DNFAD\res.vfs
