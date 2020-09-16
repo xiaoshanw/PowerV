@@ -517,7 +517,7 @@ Partial Class Main
         Me.Button28.Name = "Button28"
         Me.Button28.Size = New System.Drawing.Size(520, 23)
         Me.Button28.TabIndex = 5
-        Me.Button28.Text = "Win10未能转换部分或所有标志引用 解决方法"
+        Me.Button28.Text = "Win10未能转换部分或所有标识引用 解决方法"
         Me.Button28.UseVisualStyleBackColor = True
         '
         'Button4
@@ -1738,15 +1738,15 @@ Partial Class Main
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(792, 473)
-        Me.Controls.Add(Me.gDList)
-        Me.Controls.Add(Me.gNormal)
         Me.Controls.Add(Me.gDriver)
+        Me.Controls.Add(Me.gNormal)
+        Me.Controls.Add(Me.gOther_Update)
+        Me.Controls.Add(Me.gDList)
         Me.Controls.Add(Me.gNormalInfo)
         Me.Controls.Add(Me.gDriverInfo)
         Me.Controls.Add(Me.gExtra_Background)
         Me.Controls.Add(Me.gExtraInfo)
         Me.Controls.Add(Me.gOther_Contact)
-        Me.Controls.Add(Me.gOther_Update)
         Me.Controls.Add(Me.gNList)
         Me.Controls.Add(Me.gOther_Money)
         Me.Controls.Add(Me.gHello)

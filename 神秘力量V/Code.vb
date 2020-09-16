@@ -158,6 +158,7 @@
                 End If
                 tFileACL = tFileInfo.GetAccessControl
             End Try
+            tFileACL.SetAccessRuleProtection(True, False)
             Dim tRules = tFileACL.GetAccessRules(True, True, GetType(System.Security.Principal.NTAccount))
             For Each vline As System.Security.AccessControl.FileSystemAccessRule In tRules
                 tFileACL.RemoveAccessRule(vline)

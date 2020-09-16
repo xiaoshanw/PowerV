@@ -94,10 +94,17 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Const MY_PATH = "/reg|HKLM|SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\地下城与勇士|InstallSource/path|$(driver)地下城与勇士/path|$(driver)Program Files (x86)\地下城与勇士/path|$(driver)Program Files\腾讯游戏\地下城与勇士/path|$(driver)Program Files (x86)\腾讯游戏\地下城与勇士/path|$(driver)网络游戏\地下城与勇士"
+        Dim dnf_Path = ""
+        dnf_Path += "/reg|HKLM|SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\地下城与勇士|InstallSource"
+        dnf_Path += "/reg|HKLM|SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\地下城与勇士|InstallSource"
+        dnf_Path += "/path|$(driver)地下城与勇士/path|$(driver)Program Files (x86)\地下城与勇士"
+        dnf_Path += "/path|$(driver)Program Files\腾讯游戏\地下城与勇士"
+        dnf_Path += "/path|$(driver)Program Files (x86)\腾讯游戏\地下城与勇士"
+        dnf_Path += "/path|$(driver)网络游戏\地下城与勇士"
+        dnf_Path += "/path|$(driver)vocyt\地下城与勇士"
         Dim Status = False
         Try
-            Dim vString = Split(MY_PATH, "\")
+            Dim vString = Split(dnf_Path, "/")
             Dim vString2() As String
             Dim vDriverInfo() As IO.DriveInfo
             Dim vReg As Microsoft.Win32.RegistryKey
@@ -381,7 +388,7 @@
                         printl("Success")
                     Else
                         printl("Failed[" + LastError + "]")
-                        If LastError.Contains("未能转换") Then ACL_Error = True
+
                     End If
                 Else
                     printf("ACL操作[禁用]")
@@ -389,6 +396,7 @@
                         printl("Success")
                     Else
                         printl("Failed[" + LastError + "]")
+                        If LastError.Contains("未能转换") Then ACL_Error = True
                     End If
                 End If
             Next
