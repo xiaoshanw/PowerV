@@ -40,6 +40,8 @@
                     Args_Background = True
                 Case "-nu", "-noupgrade"
                     Args_NoUpgrade = True
+                Case "-bsod"
+                    Button24_Click(Nothing, Nothing)
             End Select
         Next
         If IO.File.Exists(CONFIG + "\NoAutoUpdate") Then Args_NoUpgrade = True
@@ -1006,6 +1008,7 @@
         CheckBox3.Checked = Not IO.File.Exists(CONFIG + "\NoTGuardSvc")
         CheckBox4.Checked = Not IO.File.Exists(CONFIG + "\NoBallon")
         CheckBox7.Checked = Not IO.File.Exists(CONFIG + "\NoTesService")
+        CheckBox8.Checked = Not IO.File.Exists(CONFIG + "NoSGuard")
         CheckBox5.Checked = IO.File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\" + Application.ProductName + ".bat")
         If Background_Timer.Enabled Then
             Button19.Text = "关闭后台模式(当前状态：运行)"
@@ -1063,6 +1066,12 @@
                                             Shell("sc stop TGuardSvc", AppWinStyle.Hide)
                                             printl("关闭TGuardSvc服务")
                                             If Background_Icon.Visible Then Icon_Show(Background_Icon, 2000, "神秘力量V", "关闭TGuardSvc服务", ToolTipIcon.Info)
+                                        End If
+                                    Case "sguard64", "sguardsvc64"
+                                        If CheckBox3.Checked Then
+                                            Shell("sc stop ""AntiCheatExpert Service""", AppWinStyle.Hide)
+                                            printl("关闭SGuard服务")
+                                            If Background_Icon.Visible Then Icon_Show(Background_Icon, 2000, "神秘力量V", "关闭SGuard服务", ToolTipIcon.Info)
                                         End If
                                     Case "tesservice"
                                         If CheckBox3.Checked Then
@@ -1231,6 +1240,16 @@
         If Not bkCheckBox_Checked Then Exit Sub
         Dim tStr = CONFIG + "\NoTesService"
         If CheckBox7.Checked Then
+            If IO.File.Exists(tStr) Then IO.File.Delete(tStr)
+        Else
+            IO.File.Create(tStr).Close()
+        End If
+    End Sub
+
+    Private Sub CheckBox8_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox8.CheckedChanged
+        If Not bkCheckBox_Checked Then Exit Sub
+        Dim tStr = CONFIG + "\NoSGuard"
+        If CheckBox8.Checked Then
             If IO.File.Exists(tStr) Then IO.File.Delete(tStr)
         Else
             IO.File.Create(tStr).Close()
