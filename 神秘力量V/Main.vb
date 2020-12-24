@@ -1008,7 +1008,7 @@
         CheckBox3.Checked = Not IO.File.Exists(CONFIG + "\NoTGuardSvc")
         CheckBox4.Checked = Not IO.File.Exists(CONFIG + "\NoBallon")
         CheckBox7.Checked = Not IO.File.Exists(CONFIG + "\NoTesService")
-        CheckBox8.Checked = Not IO.File.Exists(CONFIG + "NoSGuard")
+        CheckBox8.Checked = Not IO.File.Exists(CONFIG + "\NoSGuard")
         CheckBox5.Checked = IO.File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\" + Application.ProductName + ".bat")
         If Background_Timer.Enabled Then
             Button19.Text = "关闭后台模式(当前状态：运行)"
@@ -1068,13 +1068,13 @@
                                             If Background_Icon.Visible Then Icon_Show(Background_Icon, 2000, "神秘力量V", "关闭TGuardSvc服务", ToolTipIcon.Info)
                                         End If
                                     Case "sguard64", "sguardsvc64"
-                                        If CheckBox3.Checked Then
+                                        If CheckBox8.Checked Then
                                             Shell("sc stop ""AntiCheatExpert Service""", AppWinStyle.Hide)
                                             printl("关闭SGuard服务")
                                             If Background_Icon.Visible Then Icon_Show(Background_Icon, 2000, "神秘力量V", "关闭SGuard服务", ToolTipIcon.Info)
                                         End If
                                     Case "tesservice"
-                                        If CheckBox3.Checked Then
+                                        If CheckBox7.Checked Then
                                             Shell("sc stop TesService", AppWinStyle.Hide)
                                             printl("关闭TesService服务")
                                             If Background_Icon.Visible Then Icon_Show(Background_Icon, 2000, "神秘力量V", "关闭TesService服务", ToolTipIcon.Info)
@@ -1261,4 +1261,5 @@
         WriteINI(INI, "Normal List", "List", String_to_Base64(tStr))
         printl("重置成功")
     End Sub
+
 End Class

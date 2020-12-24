@@ -6,14 +6,16 @@ IFEO：通过Windows自带的IFEO功能拦截指定可执行文件(*.exe)的运行
 ACL：通过ACL清单拦截任意文件的访问(*.*)
 驱动：通过注册启动拦截任意可执行文件(*.exe|*.dll)的访问
 
-软件基于Microsoft .NET Framework 4.5编译(以下简称.NET)，其中
+软件基于Microsoft .NET Framework 4.7编译(以下简称.NET)，其中
 Windows XP：不支持
-Windows 7：系统自带.NET 3.5，需独立安装.NET 4.5框架https://dotnet.microsoft.com/download/dotnet-framework
-Windows 8及以上：系统自带.NET 4.5及以上版本，无需额外安装软件即可运行（若提示无法运行，请检查系统完整性）
-
-自.NET 4.5开始，.NET运行库向下兼容，即.NET 4.7可以运行基于.NET 4.5编译的软件，不可运行基于.NET 2.0编译的软件
+Windows 7：系统自带.NET 3.5，需独立安装.NET 4.7框架https://dotnet.microsoft.com/download/dotnet-framework
+Windows 10及以上：系统自带.NET 4.7及以上版本，无需额外安装软件即可运行（若提示无法运行，请检查系统完整性）
 
 更新日志：
+2020-12-24 Ver:0.1.0.5
+1.修复后台模式取消SGuard复选框不生效的BUG
+2.更新.Net编译版本为4.7
+
 2020-11-05 Ver:0.1.0.4
 1.新增对SGuard的支持，服务名称AntiCheatExpert Service，后台模式检测，若检测到则关闭（不建议禁用/删除/修改Install.dll等方式，后果自负）
 

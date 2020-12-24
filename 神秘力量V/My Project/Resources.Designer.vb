@@ -78,7 +78,7 @@ Namespace My.Resources
         '''AdvertDialog.exe|0|%DNF%\TCLS\AdvertDialog.exe
         '''AdvertTips.exe|0|%DNF%\TCLS\AdvertTips.exe
         '''BackgroundDownloader.exe|0|%DNF%\TCLS\BackgroundDownloader.exe
-        '''qbclient.exe|2|%DNF%\start\Cross\Apps\DNFAD\qbclient\qbclient.exe
+        '''qbclient.exe|2|%DNF%\start\Cross\Core\Stable\QBBlink\qbclient.exe
         '''DNFADApp.dll|2|%DNF%\start\Cross\Apps\DNFAD\DNFADApp.dll        ''' [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Friend ReadOnly Property default_NList() As String
@@ -107,8 +107,14 @@ Namespace My.Resources
         '''②驱动拦截-拦截设置-注册驱动服务-启动驱动服务
         '''
         '''更新日志：
-        '''2020-05-09 Ver:0.1.0.0
-        '''1.初版本发布 的本地化字符串。
+        '''2020-11-05 Ver:0.1.0.4
+        '''1.新增对SGuard的支持，服务名称AntiCheatExpert Service，后台模式检测，若检测到则关闭（不建议禁用/删除/修改Install.dll等方式，后果自负）
+        '''2.新增自动蓝屏功能，使用-bsod参数启动神秘力量则自动蓝屏
+        '''
+        '''2020-09-16 Ver:0.1.0.3
+        '''1.修复自动查找游戏路径失败的问题
+        '''2.修复检查更新偶尔会无法连接服务器的问题
+        '''3.修复未能转 [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Friend ReadOnly Property Hello() As String
             Get
@@ -147,7 +153,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  查找类似 若Win10系统出现【未能转换部分或所有标志引用】的提示，则您的系统可能存在如下问题：
+        '''  查找类似 若Win10系统出现【未能转换部分或所有标识引用】的提示，则您的系统可能存在如下问题：
         '''1、系统权限异常，如非法启用并使用Administrator用户(非原生安装系统/使用网络精简系统多数为此原因导致)
         '''2、账户权限异常，如requireAdministrator请求未按Windows默认设置审批
         '''3、系统文件缺失
