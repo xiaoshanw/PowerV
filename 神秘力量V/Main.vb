@@ -11,16 +11,23 @@
         MyBase.WndProc(inMessage)
     End Sub
 
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Me.Icon = My.Resources.bitbug_favicon
-        Background_Icon.Icon = My.Resources.bitbug_favicon
-        gHello.BringToFront()
-        TextBox2.Text = My.Resources.Hello
-        If Not IO.Directory.Exists(CONFIG) Then IO.Directory.CreateDirectory(CONFIG)
-        '创建配置文件夹
         If Not IO.Directory.Exists(IO.Path.GetDirectoryName(INI)) Then
             IO.Directory.CreateDirectory(IO.Path.GetDirectoryName(INI))
         End If
+
+
+        Me.Icon = My.Resources.bitbug_favicon
+        Background_Icon.Icon = My.Resources.bitbug_favicon
+
+
+
+
+        TextBox2.Text = My.Resources.Hello
+        If Not IO.Directory.Exists(CONFIG) Then IO.Directory.CreateDirectory(CONFIG)
+        '创建配置文件夹
+
         '表格双缓冲
         Dim DataGridView_Type As Type = NList.GetType
         Dim pi As Reflection.PropertyInfo = DataGridView_Type.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance Or System.Reflection.BindingFlags.NonPublic)
@@ -28,12 +35,17 @@
         pi.SetValue(DList, True, Nothing)
         tv.ExpandAll()
         tDNFPath.Text = ReadINI(INI, "Settings", "DNFPath", "")
-        'Dim tStr = Replace(Get_Version(), ".", "")
-        Me.Text = "神秘力量V " + Get_Version() + "  Powered by VoCyt"
+        If DEBUG_FLAG Then
+            Me.Text = "神秘力量V -DEBUG VERSION- " + Get_Version() + "  Powered by VoCyt"
+        Else
+            Me.Text = "神秘力量V " + Get_Version() + "  Powered by VoCyt"
+        End If
+
 
         '设置参数
         Dim Args_Background = False
         Dim Args_NoUpgrade = False
+        Dim Args_AcceptMultiRun = False
         For Each vline In My.Application.CommandLineArgs
             Select Case vline.ToLower
                 Case "-b", "-bg", "-background"
@@ -42,11 +54,33 @@
                     Args_NoUpgrade = True
                 Case "-bsod"
                     Button24_Click(Nothing, Nothing)
+                Case "-mr", "-multirun"
+                    Args_AcceptMultiRun = True
+                Case "-fr", "-firstrun"
+                    IO.File.Create(CONFIG + "\FirstRun").Close()
             End Select
         Next
+        '首次运行
+        If IO.File.Exists(CONFIG + "\FirstRun") Then
+            gHello.BringToFront() 'DDDebug
+        Else
+            gOther_Donate.BringToFront()
+            MsgBox("检测到首次运行本软件，使用本软件功能前，请务必查看说明说明（位于各操作面板底部")
+            IO.File.Create(CONFIG + "\FirstRun").Close()
+        End If
+
         If IO.File.Exists(CONFIG + "\NoAutoUpdate") Then Args_NoUpgrade = True
+        '多开提示
+        If Not Args_AcceptMultiRun Then
+            If Process.GetProcessesByName(Process.GetCurrentProcess.ProcessName).Length > 1 Then
+                If MsgBox("检测到神秘力量正在运行，是否多开实例", MsgBoxStyle.YesNo) = MsgBoxResult.No Then
+                    Me.Close()
+                    Exit Sub
+                End If
+            End If
+        End If
         '更新
-        If Not Args_NoUpgrade Then
+        If Not Args_NoUpgrade And Not DEBUG_FLAG Then
             Dim tClass = New Update_Class
             tClass.SrcForm = Me
             tClass.ifShowMessage = True
@@ -56,6 +90,8 @@
         End If
         '自动后台
         If Args_Background Then
+            Tree_Select_Ex("后台模式")
+            gExtra_Background.BringToFront()
             bkCheckBox_Checked = False
             Background_Check()
             bkCheckBox_Checked = True
@@ -93,6 +129,14 @@
 
     Private Sub Form1_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         If Check_Game_Path(tDNFPath.Text) Then WriteINI(INI, "Settings", "DNFPath", tDNFPath.Text)
+        If Get_Runner.ToLower = "system" Then
+            For Each sProcess In Process.GetProcesses
+                Select Case sProcess.ProcessName.ToLower
+                    Case "sguard64", "sguardsvc64"
+                        NtResumeProcess(sProcess.Handle)
+                End Select
+            Next
+        End If
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -189,11 +233,15 @@
                 Case "常规禁用 (IFEO+ACL)"
                     gNormalInfo.BringToFront()
                 Case "拦截清单 (修改清单)"
-                    gDList.BringToFront()
-                    DList_Fresh()
+                    If Not First_vLimit() Then
+                        gDList.BringToFront()
+                        DList_Fresh()
+                    End If
                 Case "拦截设置 (注册|卸载|启停)"
-                    gDriver.BringToFront()
-                    Button6_Click(Me, e)
+                    If Not First_vLimit() Then
+                        gDriver.BringToFront()
+                        Button6_Click(Me, e)
+                    End If
                 Case "扩展功能"
                     gExtraInfo.BringToFront()
                 Case "后台模式"
@@ -221,7 +269,7 @@
                 Case "联系我们&提交建议"
                     gOther_Contact.BringToFront()
                 Case "赞助开发者"
-                    gOther_Money.BringToFront()
+                    gOther_Donate.BringToFront()
                 Case "驱动拦截 (vLimit)"
                     gDriverInfo.BringToFront()
             End Select
@@ -451,6 +499,20 @@
         TREE_MANUAL_SELECT = True
     End Sub
 
+    Public Function First_vLimit() As Boolean
+        If Not IO.File.Exists(CONFIG + "\First_vLimit") Then
+            IO.File.Create(CONFIG + "\First_vLimit").Close()
+            If MsgBox("检测到第一次使用驱动拦截功能，是否打开简易教学" + vbCrLf + "此教学可点击左侧""驱动拦截""按钮查看", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+                Dim tTreeNode = Tree_Find_Node_With_Text("驱动拦截 (vLimit)")
+                If tTreeNode IsNot Nothing Then
+                    tv.SelectedNode = tTreeNode
+                End If
+                Return True
+            End If
+        End If
+        Return False
+    End Function
+
     Public Function Tree_Find_Node_With_Text(inString As String) As TreeNode
         Dim rTreeNode As TreeNode = Nothing
         For Each vline In tv.Nodes
@@ -462,6 +524,7 @@
 
     Private Function Tree_Find_Loop(ByVal inTreeNode As TreeNode, inString As String) As TreeNode
         Dim rTreeNode As TreeNode = Nothing
+        If inTreeNode.Text = inString Then Return inTreeNode
         For Each vline As TreeNode In inTreeNode.Nodes
             If vline.Text = inString Then
                 rTreeNode = vline
@@ -888,16 +951,58 @@
             TextBox5.Text = ""
             Button15.Enabled = False
             Dim tDouble As Double
-            tDouble += Delete_Tree_Recursive(Path_Fix(tDNFPath.Text + "\tgppatches"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
-            tDouble += Delete_Tree_Recursive(Path_Fix(tDNFPath.Text + "\components"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
-            tDouble += Delete_Tree_Recursive(Path_Fix(tDNFPath.Text + "\TGuard"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
-            tDouble += Delete_Tree_Recursive(Path_Fix(tDNFPath.Text + "\TP_Temp"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
+            'tgppatches
+            If CheckBox9.Checked Then
+                tDouble += Delete_Tree_Recursive(Path_Fix(tDNFPath.Text + "\tgppatches"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
+            End If
+            'components/EXPlugins
+            If CheckBox10.Checked Then
+                tDouble += Delete_Tree_Recursive(Path_Fix(tDNFPath.Text + "\components"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
+                tDouble += Delete_Tree_Recursive(Path_Fix(tDNFPath.Text + "\EXPlugins"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
+            End If
+            'TGuard/TP_Temp
+            If CheckBox11.Checked Then
+                tDouble += Delete_Tree_Recursive(Path_Fix(tDNFPath.Text + "\TGuard"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
+                tDouble += Delete_Tree_Recursive(Path_Fix(tDNFPath.Text + "\TP_Temp"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
+            End If
+            'log/dat
+            If CheckBox12.Checked Then
+                tDouble += Delete_File(Path_Fix(tDNFPath.Text + "\gameloader.log"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
+                tDouble += Delete_File(Path_Fix(tDNFPath.Text + "\LagLog.txt"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
+                tDouble += Delete_File(Path_Fix(tDNFPath.Text + "\BugTrace.log"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
+                tDouble += Delete_File(Path_Fix(tDNFPath.Text + "\awesomium.log"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
+                For Each vline In IO.Directory.GetFiles(Path_Fix(tDNFPath.Text + "\TCLS\tlog"))
+                    If vline.ToLower.EndsWith(".log") Then
+                        tDouble += Delete_File(vline, TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
+                    End If
+                Next
+                tDouble += Delete_Tree_Recursive(Path_Fix(tDNFPath.Text + "\start\Cross\Logs"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
+                tDouble += Delete_Tree_Recursive(Path_Fix(tDNFPath.Text + "\Logs"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
+                tDouble += Delete_Tree_Recursive(Path_Fix(tDNFPath.Text + "\start\Cross\FileCache"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
+            End If
+            If CheckBox13.Checked Then
+                tDouble += Delete_File(Path_Fix(tDNFPath.Text + "\CrashDNF2.cra"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
+            End If
+            If CheckBox14.Checked Then
+                Try
+                    Dim dnfcfg = (Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "Low\DNF\DNF.cfg")
+                    IO.File.Move(dnfcfg, Path_Fix(IO.Path.GetTempPath + "\DNF.cfg"))
+                    tDouble += Delete_Tree_Recursive(IO.Path.GetDirectoryName(dnfcfg), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
+                    IO.Directory.Delete(IO.Path.GetDirectoryName(dnfcfg), True)
+                    IO.Directory.CreateDirectory(IO.Path.GetDirectoryName(dnfcfg))
+                    IO.File.Move(Path_Fix(IO.Path.GetTempPath + "\DNF.cfg"), dnfcfg)
+
+                Catch ex As Exception
+
+                End Try
+            End If
+
             printl("精简结束")
             tDouble = tDouble / 1024 / 1024
             printl("共删除" + Format(tDouble, "#,###.##") + " mb文件")
             Button15.Enabled = True
         Else
-            printl("游戏路径设置错误")
+                printl("游戏路径设置错误")
         End If
 
     End Sub
@@ -1010,6 +1115,14 @@
         CheckBox7.Checked = Not IO.File.Exists(CONFIG + "\NoTesService")
         CheckBox8.Checked = Not IO.File.Exists(CONFIG + "\NoSGuard")
         CheckBox5.Checked = IO.File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\" + Application.ProductName + ".bat")
+        If IO.File.Exists(CONFIG + "\SGuard_Mode") Then
+            Dim tString = IO.File.ReadAllText(CONFIG + "\SGuard_Mode")
+            If ComboBox1.Items.Contains(tString) Then
+                ComboBox1.Text = tString
+            End If
+        End If
+        If ComboBox1.Text = "" Then ComboBox1.Text = ComboBox1.Items(0)
+
         If Background_Timer.Enabled Then
             Button19.Text = "关闭后台模式(当前状态：运行)"
         Else
@@ -1019,7 +1132,7 @@
 
     Private Sub Background_Init(ByVal inBoolean As Boolean)
         Background_Icon.Visible = inBoolean
-        Me.Visible = Not inBoolean
+        Me.Visible = Not inBoolean    'DDDEBUG
     End Sub
 
     Private Sub Button19_Click(sender As Object, e As EventArgs) Handles Button19.Click
@@ -1028,7 +1141,23 @@
         Else
             Background_Timer.Interval = 5000
         End If
+        '设置启停
+        Select Case Background_Timer.Enabled
+            Case True
+                'STOP
+                SGuard_Control(0)
+            Case False
+                'START
+                If CheckBox8.Checked And ComboBox1.Text.Contains("A") And Get_Runner.ToLower <> "system" Then
+                    System_Invoker(Me.GetType.Assembly.Location)
+                End If
+                If CheckBox8.Checked And ComboBox1.Text.Contains("B") Then
+                    SGuard_Control(2)
+                End If
+        End Select
+
         Background_Timer.Enabled = Not Background_Timer.Enabled
+
         Background_Check()
         If Background_Timer.Enabled Then
             printl("后台模式启动")
@@ -1041,10 +1170,26 @@
     Private Sub BackGround_Timer_Tick(sender As Object, e As EventArgs) Handles Background_Timer.Tick
         'printl(Now.ToString)
         Try
+            Try
+                If Last_DNF_PID <> 0 Then
+                    Dim tProcess = Process.GetProcessById(Last_DNF_PID)
+                    If tProcess Is Nothing Then
+                        SGuard_Control(0)
+                    Else
+                        If tProcess.HasExited Then
+                            SGuard_Control(0)
+                        End If
+                    End If
+                End If
+            Catch ex2 As Exception
+                printl("后台模式[“ + ex2.Message + ”]")
+            End Try
+
             Dim tProcesses = Process.GetProcesses
             For Each sProcess In tProcesses
                 If sProcess.ProcessName.ToLower = "dnf" Then
                     If sProcess.Id <> Last_DNF_PID Then
+                        'If sProcess.Id <> Last_DNF_Process.Id Then
                         If DateDiff(DateInterval.Second, sProcess.StartTime, Now) > 59 Then
                             'hit
                             For Each sProcess2 In tProcesses
@@ -1067,11 +1212,19 @@
                                             printl("关闭TGuardSvc服务")
                                             If Background_Icon.Visible Then Icon_Show(Background_Icon, 2000, "神秘力量V", "关闭TGuardSvc服务", ToolTipIcon.Info)
                                         End If
-                                    Case "sguard64", "sguardsvc64"
+                                    'Case "sguard64", "sguardsvc64"
+                                    Case "sguard64"
+                                        'If CheckBox8.Checked Then
+                                        '    Shell("sc stop ""AntiCheatExpert Service""", AppWinStyle.Hide)
+                                        '    printl("关闭SGuard服务")
+                                        '    If Background_Icon.Visible Then Icon_Show(Background_Icon, 2000, "神秘力量V", "关闭SGuard服务", ToolTipIcon.Info)
+                                        'End If
                                         If CheckBox8.Checked Then
-                                            Shell("sc stop ""AntiCheatExpert Service""", AppWinStyle.Hide)
-                                            printl("关闭SGuard服务")
-                                            If Background_Icon.Visible Then Icon_Show(Background_Icon, 2000, "神秘力量V", "关闭SGuard服务", ToolTipIcon.Info)
+                                            If ComboBox1.Text.Contains("A") Then
+                                                SGuard_Control(1)
+                                                'ElseIf ComboBox1.Text.Contains("B") Then
+                                                '    SGuard_Control(2)
+                                            End If
                                         End If
                                     Case "tesservice"
                                         If CheckBox7.Checked Then
@@ -1083,6 +1236,7 @@
                                 End Select
                             Next
                             Last_DNF_PID = sProcess.Id
+                            'Last_DNF_Process = sProcess
                         End If
                     End If
                     Exit Sub
@@ -1175,6 +1329,86 @@
         printl("引用列表成功")
     End Sub
 
+    Private Sub SGuard_Control(ByVal __in_mode As Integer)
+        '0还原
+        '1提权
+        '2替换
+        Try
+            Dim tString As String
+            Select Case __in_mode
+                Case 0
+                    'printl("检测权限[" + Get_Runner() + "]")
+                    If Get_Runner.ToLower = "system" Then
+                        For Each sProcess In Process.GetProcesses
+                            Select Case sProcess.ProcessName.ToLower
+                                Case "sguard64", "sguardsvc64"
+                                    NtResumeProcess(sProcess.Handle)
+                            End Select
+                        Next
+                    End If
+                Case 1
+                    'Shell("sc start ""AntiCheatExpert Service""", AppWinStyle.Hide)
+                    Dim sg64, sgsvc64 As IntPtr
+                    For i = 1 To 10
+                        sg64 = 0
+                        sgsvc64 = 0
+                        For Each sProcess In Process.GetProcesses
+                            Select Case sProcess.ProcessName.ToLower
+                                Case "sguard64"
+                                    sg64 = sProcess.Handle
+                                Case "sguardsvc64"
+                                    sgsvc64 = sProcess.Handle
+                            End Select
+                            If sg64 <> 0 And sgsvc64 <> 0 Then
+                                printl("NtSuspendProcess(sguard64)=" + NtSuspendProcess(sg64).ToString)
+                                printl("NtSuspendProcess(sguardsvc64)=" + NtSuspendProcess(sgsvc64).ToString)
+                                Exit Sub
+                            End If
+                        Next
+
+                        Threading.Thread.Sleep(1000)
+                    Next
+                Case 2
+                    tString = Find_Get_SGuardSub(Application.StartupPath)
+                    If Not IO.File.Exists(CONFIG + "\SGuardSub.zip") Then
+                        If tString = "" Then
+                            MsgBox("未找到替换资源包，请在弹窗确认后下载SGuardSubXXXXXXXX.zip并放置神秘力量V的目录下")
+                            LinkLabel1_LinkClicked(Me, Nothing)
+                            MsgBox("请将下载的SGuardSubXXXXXXXX.zip并放置神秘力量V的目录下，点击确认以继续")
+                            tString = Find_Get_SGuardSub(Application.StartupPath)
+                            If tString = "" Then
+                                MsgBox("未找到替换资源包，SGuard限制将不可用")
+                                CheckBox8.Checked = False
+                                Exit Sub
+                            End If
+                        End If
+
+                    End If
+
+                    If Not File_Compare(tString, CONFIG + "\SGuardSub.zip", "length") Then
+                        IO.File.Copy(tString, CONFIG + "\SGuardSub.zip")
+                    End If
+
+                    If Not IO.File.Exists(CONFIG + "\SGuardSub.zip") Then
+                        MsgBox("未找到替换资源包，SGuard限制将不可用")
+                        CheckBox8.Checked = False
+                        Exit Sub
+                    Else
+                        Shell("sc stop ""AntiCheatExpert Service""", AppWinStyle.Hide)
+                        If Not IO.Directory.Exists(SGuard_Path + "\x64_bak") Then
+                            Copy_Directory(SGuard_Path + "\x64", SGuard_Path + "\x64_bak")
+                        End If
+                        IO.Directory.Delete(SGuard_Path + "\x64", True)
+                        IO.Compression.ZipFile.ExtractToDirectory(CONFIG + "\SGuardSub.zip", SGuard_Path + "\x64")
+                        Shell("sc start ""AntiCheatExpert Service""", AppWinStyle.Hide)
+                    End If
+            End Select
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
+
     Public Delegate Sub Delegate_Update(ByVal inString As String)
 
     Public Sub Delegate_Update_Version(ByVal inString As String)
@@ -1214,22 +1448,6 @@
         End If
     End Sub
 
-    Private Sub Button26_Click(sender As Object, e As EventArgs) Handles Button26.Click
-        Try
-            Dim tStr As String
-            Dim tEndPoint = New System.Net.IPEndPoint(System.Net.Dns.GetHostAddresses(Update_Server)(0), 47655)
-            Dim tSocket = New System.Net.Sockets.Socket(System.Net.Sockets.AddressFamily.InterNetwork, System.Net.Sockets.SocketType.Stream, System.Net.Sockets.ProtocolType.Tcp)
-            tSocket.Connect(tEndPoint)
-            tStr = TextBox14.Text + vbCrLf + TextBox15.Text
-            tSocket.Send(System.Text.Encoding.Unicode.GetBytes("ADVISE"))
-            tSocket.Send(System.Text.Encoding.Unicode.GetBytes(tStr))
-            tSocket.Close()
-        Catch ex As Exception
-
-        End Try
-        MsgBox("提交成功")
-    End Sub
-
     Private Sub Button28_Click(sender As Object, e As EventArgs) Handles Button28.Click
         Dim tStr = IO.Path.GetTempFileName
         IO.File.WriteAllText(tStr, My.Resources.Win10ACLError)
@@ -1262,4 +1480,48 @@
         printl("重置成功")
     End Sub
 
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
+        IO.File.WriteAllText(CONFIG + "\SGuard_Mode", ComboBox1.Text)
+        LinkLabel1.Visible = ComboBox1.Text.Contains("替换")
+    End Sub
+
+    Private Sub Button26_Click(sender As Object, e As EventArgs) Handles Button26.Click
+        Diagnostics.Process.Start("https://jq.qq.com/?_wv=1027&k=UEdouODC")
+    End Sub
+
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        Process.Start("https://share.weiyun.com/EpHKYqu9")
+    End Sub
+
+    Private Function Find_Get_SGuardSub(ByVal __in_path As String) As String
+        printl("检测替换资源包")
+        Dim fullName, fileName, fileDate As String
+        fullName = ""
+        fileDate = "0"
+        Dim tString As String
+        For Each sFile In IO.Directory.GetFiles(__in_path)
+            fileName = IO.Path.GetFileName(sFile)
+            If fileName.ToLower Like "sguardsub????????.zip" Then
+                tString = Mid(fileName, 10, 8)
+                If IsNumeric(tString) Then
+                    If CInt(tString) > CInt(fileDate) Then
+                        fullName = sFile
+                    End If
+                End If
+            End If
+        Next
+        printl("资源包[" + fullName + "]")
+        Return fullName
+    End Function
+
+    Public Sub Copy_Directory(ByVal __in_pathSrc As String, ByVal __in_pathDes As String)
+
+        For Each sdir In IO.Directory.GetDirectories(__in_pathSrc)
+            IO.Directory.CreateDirectory(sdir.Replace(__in_pathSrc, __in_pathDes))
+            Copy_Directory(sdir, sdir.Replace(__in_pathSrc, __in_pathDes))
+        Next
+        For Each sfile In IO.Directory.GetFiles(__in_pathSrc)
+            IO.File.Copy(sfile, sfile.Replace(__in_pathSrc, __in_pathDes))
+        Next
+    End Sub
 End Class

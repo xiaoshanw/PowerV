@@ -1,36 +1,24 @@
 ﻿Module Code
     Public bkCheckBox_Checked As Boolean = True
     Public Update_Server = "update.vocyt.com"  'update_address
-    Public CONFIG As String = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\" + Application.ProductName
+    'Public CONFIG As String = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\" + Application.ProductName
+    Public CONFIG As String = "C:\Users\Public\Documents\PowerV"
     Public INI As String = CONFIG + "\config.ini"
-    Public IFEO_PATH As String = Path_Fix(IO.Path.GetDirectoryName(INI) + "\VoCytDefenderEx.exe")
+    Public IFEO_PATH As String = CONFIG + "\VoCytDefenderEx.exe"
     Public vLimit_DAT As String = "C:\Users\Public\Documents\vLimit\vLimit.dat"
     Public vLimit_SYS As String = "C:\Users\Public\Documents\vLimit\vLimit.sys"
+    Public SGuard_Path As String = "C:\Program Files\AntiCheatExpert\SGuard"
     Public LastError As String
     Public Last_DNF_PID As Integer
     Public TREE_MANUAL_SELECT As Boolean = True
     Public Hide_Active As Boolean = False
-    Private Declare Function GetPrivateProfileString Lib "kernel32" Alias "GetPrivateProfileStringA" (ByVal lpApplicationName As String, ByVal lpKeyName As String, ByVal lpDefault As String, ByVal lpReturnedString As String, ByVal nSize As IntPtr, ByVal lpFileName As String) As IntPtr
-    Private Declare Function WritePrivateProfileString Lib "kernel32" Alias "WritePrivateProfileStringA" (ByVal lpApplicationName As String, ByVal lpKeyName As String, ByVal lpString As String, ByVal lpFileName As String) As IntPtr
-    Public Declare Ansi Function RtlAdjustPrivilege Lib "ntdll.dll" (ByVal Privilege As Integer, ByVal Enable As Boolean, ByVal Client As Boolean, ByRef WasEnabled As Integer) As Integer
-    Public Declare Ansi Function RtlSetProcessIsCritical Lib "ntdll.dll" (ByVal NewValue As Integer, ByVal Value As Integer, ByVal WinLogon As Integer) As Integer
-    Public Declare Ansi Function NtRaiseHardError Lib "ntdll.dll" (ByVal ErrorStatus As Integer, ByVal NumberOfParameters As Integer, ByVal UnicodeStringParameterMask As Integer, ByVal Parameters As Integer, ByVal ValidResponseOption As Integer, ByRef Response As Integer) As UInteger
-    <System.Runtime.InteropServices.DllImport("advapi32.dll", SetLastError:=True, CharSet:=Runtime.InteropServices.CharSet.Unicode)>
-    Public Function OpenSCManager(ByVal machineName As String, ByVal databaseName As String, ByVal dwAccess As UInteger) As IntPtr
-    End Function
-    <System.Runtime.InteropServices.DllImport("advapi32.dll", SetLastError:=True, CharSet:=Runtime.InteropServices.CharSet.Unicode)>
-    Public Function CreateService(ByVal hSCManager As IntPtr, ByVal lpServiceName As String, ByVal lpDisplayName As String, ByVal dwDesiredAccess As Integer, ByVal dwServiceType As Integer, ByVal dwStartType As Integer, ByVal dwErrorControl As Integer, ByVal lpBinaryPathName As String, ByVal lpLoadOrderGroup As String, ByVal lpdwTagId As Integer, ByVal lpDependencies As Integer, ByVal lpServiceStartName As Integer, ByVal lpPassword As Integer) As IntPtr
-    End Function
-    <System.Runtime.InteropServices.DllImport("advapi32.dll", SetLastError:=True)>
-    Public Function CloseServiceHandle(ByVal serviceHandle As IntPtr) As Boolean
-    End Function
-    Public Const SC_MANAGER_CREATE_SERVICE = 2
-    Public Const SERVICE_START = 16
-    Public Const SERVICE_KERNEL_DRIVER = 1
-    Public Const SERVICE_DEMAND_START = 3
-    Public Const SERVICE_ERROR_IGNORE = 0
-    Public Const SC_MINIMIZE = &HF020 '窗体最小化消息
-    Public Const WM_SYSCOMMAND = &H112
+#If DEBUG Then
+    Public DEBUG_FLAG = True
+#Else
+    Public DEBUG_FLAG = False
+#End If
+
+
     Public Function WriteINI(ByVal FileName As String, ByVal SectionName As String, ByVal KeyName As String, ByVal Value As String) As IntPtr
         Return WritePrivateProfileString(SectionName, KeyName, Value, FileName)
     End Function
@@ -273,8 +261,138 @@
         Next
         Return tDouble
     End Function
+    Public Function Delete_File(ByVal inPath As String, ByRef inTextbox As TextBox, ByVal inMessage As String) As Double
+        '${Name}
+        '${Length}
+        Dim tStr As String
+        Dim tDouble As Double = 0
+        Dim tLength As Long
+        If Not IO.File.Exists(inPath) Then Return 0
 
+        Try
+            tLength = New IO.FileInfo(inPath).Length
+            Try
+                IO.File.Delete(inPath)
+            Catch ex2 As Exception
+                Set_ACL_Status(inPath, True)
+                Try
+                    IO.File.Delete(inPath)
+                Catch ex3 As Exception
 
+                End Try
+            End Try
+            tStr = inMessage
+            tStr = Replace(tStr, "${Name}", IO.Path.GetFileName(inPath))
+            tDouble += tLength
+            tLength = tLength / 1024
+            tStr = Replace(tStr, "${Length}", Format(tLength, "#,###.##") + " kb")
+            inTextbox.AppendText(tStr)
+        Catch ex As Exception
+
+        End Try
+        Return tDouble
+    End Function
+    Public Function Get_Runner() As String
+        Dim myPID = Process.GetCurrentProcess.Id
+
+        Try
+            Dim myQuery = New System.Management.SelectQuery("Select * from Win32_Process WHERE processID=" + Process.GetCurrentProcess.Id.ToString)
+
+            For Each vline As System.Management.ManagementObject In New System.Management.ManagementObjectSearcher(myQuery).Get
+                'Dim inPar As System.Management.ManagementObject
+                'Dim outPar As System.Management.ManagementObject = Nothing
+                Dim inPar = vline.GetMethodParameters("GetOwner")
+                Dim outPar = vline.InvokeMethod("GetOwner", inPar, Nothing)
+                Return Convert.ToString(outPar("User"))
+                Exit For
+            Next
+
+        Catch ex As Exception
+
+        End Try
+        Return ""
+    End Function
+    Public Sub Resources_Decompress(ByVal __in_Byte As Byte(), ByVal __in_filePath As String)
+        Try
+            If IO.File.Exists(__in_filePath) Then
+                IO.File.Delete(__in_filePath)
+            End If
+            Dim msi = New IO.MemoryStream(__in_Byte)
+            Dim mso = New IO.MemoryStream()
+            Dim gs = New IO.Compression.GZipStream(msi, IO.Compression.CompressionMode.Decompress)
+            gs.CopyTo(mso)
+            IO.File.WriteAllBytes(__in_filePath, mso.ToArray)
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Public Sub System_Invoker(ByVal __in_path As String)
+
+        If Get_Runner.ToLower <> "system" Then
+            Dim PsExec64 = Path_Fix(IO.Path.GetTempPath + "\PsExec64.exe")
+            If Not IO.File.Exists(PsExec64) Then
+                Resources_Decompress(My.Resources.PsExec64, PsExec64)
+            End If
+            Dim reg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("Software\Sysinternals\PsExec", True)
+            reg.SetValue("EulaAccepted", 1, Microsoft.Win32.RegistryValueKind.DWord)
+
+            Dim tBatch = Path_Fix(IO.Path.GetTempPath + "\PowerV_Runas_SYSTEM.bat")
+            If IO.File.Exists(tBatch) Then IO.File.Delete(tBatch)
+            IO.File.WriteAllText(tBatch, "start """" """ + __in_path + """ -noupgrade -multirun -firstrun -background", System.Text.Encoding.Default)
+            Dim tProcess = New Process()
+            Dim tProcess_Info = New ProcessStartInfo
+            tProcess.StartInfo.FileName = PsExec64
+            tProcess.StartInfo.Arguments = "/accepteula /s /d /i """ + tBatch + """"
+            tProcess.StartInfo.CreateNoWindow = True
+            tProcess.StartInfo.UseShellExecute = False
+            tProcess.StartInfo.RedirectStandardError = False
+            tProcess.StartInfo.RedirectStandardOutput = True
+            tProcess.Start()
+            tProcess.WaitForExit()
+            Threading.Thread.Sleep(3000)
+            Dim eax = 0
+            For Each sProcess In Process.GetProcesses
+                If sProcess.ProcessName = Process.GetCurrentProcess.ProcessName Then
+                    eax += 1
+                End If
+            Next
+            If eax > 1 Then
+                IO.File.Delete(tBatch)
+                Application.Exit()
+            End If
+        End If
+    End Sub
+    Public Function File_Compare(ByVal __in_fileA As String, ByVal __in_fileB As String， ByVal __in_Mode As String) As Boolean
+        Const BYTES_TO_READ = 1024 * 10
+        If Not IO.File.Exists(__in_fileA) Then Return False
+        If Not IO.File.Exists(__in_fileB) Then Return False
+        Select Case __in_Mode.ToLower
+            Case "length"
+                If New IO.FileInfo(__in_fileA).Length <> New IO.FileInfo(__in_fileA).Length Then Return False
+            Case "byte"
+                Using fsA As IO.FileStream = IO.File.Open(__in_fileA, IO.FileMode.Open)
+                    Using fsB As IO.FileStream = IO.File.Open(__in_fileB, IO.FileMode.Open)
+                        Dim bytesA(BYTES_TO_READ) As Byte
+                        Dim bytesB(BYTES_TO_READ) As Byte
+                        Dim eax As Integer
+                        While True
+                            Dim lenA = fsA.Read(bytesA, 0, BYTES_TO_READ)
+                            Dim lenB = fsB.Read(bytesB, 0, BYTES_TO_READ)
+                            eax = 0
+                            While (eax < lenA And eax < lenB)
+                                If bytesA(eax) <> bytesA(eax) Then Return False
+                                eax += 1
+                            End While
+                            If lenA = 0 Or lenB = 0 Then Exit While
+                        End While
+
+                    End Using
+                End Using
+        End Select
+        Return True
+    End Function
 End Module
 Public Class Update_Class
     Public SrcForm As Main

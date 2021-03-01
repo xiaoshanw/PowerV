@@ -102,19 +102,21 @@ Namespace My.Resources
         '''①常规禁用-禁用清单-右键-添加/删除插件/修改禁用方式
         '''②常规禁用-禁用清单-IFEO/ACL操作
         '''
-        '''适用全平台的拦截方案：
+        '''适用全环境的拦截方案：
         '''①驱动拦截-拦截清单-右键-添加/删除/引用拦截
         '''②驱动拦截-拦截设置-注册驱动服务-启动驱动服务
         '''
         '''更新日志：
-        '''2020-11-05 Ver:0.1.0.4
-        '''1.新增对SGuard的支持，服务名称AntiCheatExpert Service，后台模式检测，若检测到则关闭（不建议禁用/删除/修改Install.dll等方式，后果自负）
-        '''2.新增自动蓝屏功能，使用-bsod参数启动神秘力量则自动蓝屏
-        '''
-        '''2020-09-16 Ver:0.1.0.3
-        '''1.修复自动查找游戏路径失败的问题
-        '''2.修复检查更新偶尔会无法连接服务器的问题
-        '''3.修复未能转 [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''2020-12-24 Ver:0.1.1.0
+        '''1.允许程序多开，添加启动参数-MultiRun可屏蔽多开提示
+        '''2.优化后台模式中对SGuard的操作方式，并提供2种优化方案，可根据需要自行选择
+        '''	a.替换运行
+        '''	b.提权冻结
+        '''3.新增赞助二维码（支付宝）
+        '''4.新增入群方式（备用群）
+        '''5.首次使用本程序，会自动跳转至赞助页（仅首次运行，更新不重置）
+        '''6.新增驱动拦截的新手教程（首次打开驱动拦截自动弹出）
+        '''7.将软件配置路径修改 [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Friend ReadOnly Property Hello() As String
             Get
@@ -123,11 +125,31 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  查找 System.Byte[] 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property PsExec64() As Byte()
+            Get
+                Dim obj As Object = ResourceManager.GetObject("PsExec64", resourceCulture)
+                Return CType(obj,Byte())
+            End Get
+        End Property
+        
+        '''<summary>
         '''  查找 System.Drawing.Bitmap 类型的本地化资源。
         '''</summary>
-        Friend ReadOnly Property qun() As System.Drawing.Bitmap
+        Friend ReadOnly Property qun1() As System.Drawing.Bitmap
             Get
-                Dim obj As Object = ResourceManager.GetObject("qun", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("qun1", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property qun2() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("qun2", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
@@ -182,6 +204,16 @@ Namespace My.Resources
         Friend ReadOnly Property wx() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("wx", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property zfb() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("zfb", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
