@@ -1141,7 +1141,10 @@
         Else
             Background_Timer.Interval = 5000
         End If
-        '设置启停
+        '设置icon
+        Background_Init(Not Background_Timer.Enabled)
+        Application.DoEvents()
+        '预处理
         Select Case Background_Timer.Enabled
             Case True
                 'STOP
@@ -1149,22 +1152,25 @@
             Case False
                 'START
                 If CheckBox8.Checked And ComboBox1.Text.Contains("A") And Get_Runner.ToLower <> "system" Then
+                    Background_Icon.Visible = False
+                    Application.DoEvents()
                     System_Invoker(Me.GetType.Assembly.Location)
                 End If
                 If CheckBox8.Checked And ComboBox1.Text.Contains("B") Then
                     SGuard_Control(2)
                 End If
         End Select
-
+        '启动计时器
         Background_Timer.Enabled = Not Background_Timer.Enabled
-
+        '重置界面
         Background_Check()
         If Background_Timer.Enabled Then
             printl("后台模式启动")
         Else
             printl("后台模式关闭")
         End If
-        Background_Init(Background_Timer.Enabled)
+
+
     End Sub
 
     Private Sub BackGround_Timer_Tick(sender As Object, e As EventArgs) Handles Background_Timer.Tick
@@ -1372,7 +1378,7 @@
                     tString = Find_Get_SGuardSub(Application.StartupPath)
                     If Not IO.File.Exists(CONFIG + "\SGuardSub.zip") Then
                         If tString = "" Then
-                            MsgBox("未找到替换资源包，请在弹窗确认后下载SGuardSubXXXXXXXX.zip并放置神秘力量V的目录下")
+                            MsgBox("未找到替换资源包，请在弹窗确认后下载SGuardSubXXXXXXXX.zip并放置神秘力量V的目录下(无需解压)")
                             LinkLabel1_LinkClicked(Me, Nothing)
                             MsgBox("请将下载的SGuardSubXXXXXXXX.zip并放置神秘力量V的目录下，点击确认以继续")
                             tString = Find_Get_SGuardSub(Application.StartupPath)
@@ -1382,7 +1388,8 @@
                                 Exit Sub
                             End If
                         End If
-
+                    Else
+                        tString = CONFIG + "\SGuardSub.zip"
                     End If
 
                     If Not File_Compare(tString, CONFIG + "\SGuardSub.zip", "length") Then
@@ -1395,11 +1402,30 @@
                         Exit Sub
                     Else
                         Shell("sc stop ""AntiCheatExpert Service""", AppWinStyle.Hide)
+                        For i = 1 To 5
+                            Threading.Thread.Sleep(1000)
+                            For Each sProcess In Process.GetProcesses
+                                If sProcess.ProcessName.ToLower = "sguard64" Then
+                                    Continue For
+                                ElseIf sProcess.ProcessName.ToLower = "sguardsvc64" Then
+                                    Continue For
+                                End If
+                            Next
+                            Exit For
+                        Next
                         If Not IO.Directory.Exists(SGuard_Path + "\x64_bak") Then
                             Copy_Directory(SGuard_Path + "\x64", SGuard_Path + "\x64_bak")
                         End If
-                        IO.Directory.Delete(SGuard_Path + "\x64", True)
-                        IO.Compression.ZipFile.ExtractToDirectory(CONFIG + "\SGuardSub.zip", SGuard_Path + "\x64")
+                        Try
+                            IO.Directory.Delete(SGuard_Path + "\x64", True)
+                        Catch ex As Exception
+                            printl(ex.Message)
+                        End Try
+                        Try
+                            IO.Compression.ZipFile.ExtractToDirectory(CONFIG + "\SGuardSub.zip", SGuard_Path + "\x64")
+                        Catch ex As Exception
+                            printl(ex.Message)
+                        End Try
                         Shell("sc start ""AntiCheatExpert Service""", AppWinStyle.Hide)
                     End If
             End Select

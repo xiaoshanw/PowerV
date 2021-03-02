@@ -335,9 +335,13 @@
             If Not IO.File.Exists(PsExec64) Then
                 Resources_Decompress(My.Resources.PsExec64, PsExec64)
             End If
-            Dim reg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("Software\Sysinternals\PsExec", True)
-            reg.SetValue("EulaAccepted", 1, Microsoft.Win32.RegistryValueKind.DWord)
+            'Add EulaAccepted
+            Try
+                Dim reg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("Software\Sysinternals\PsExec", True)
+                reg.SetValue("EulaAccepted", 1, Microsoft.Win32.RegistryValueKind.DWord)
+            Catch ex As Exception
 
+            End Try
             Dim tBatch = Path_Fix(IO.Path.GetTempPath + "\PowerV_Runas_SYSTEM.bat")
             If IO.File.Exists(tBatch) Then IO.File.Delete(tBatch)
             IO.File.WriteAllText(tBatch, "start """" """ + __in_path + """ -noupgrade -multirun -firstrun -background", System.Text.Encoding.Default)
@@ -368,6 +372,7 @@
         Const BYTES_TO_READ = 1024 * 10
         If Not IO.File.Exists(__in_fileA) Then Return False
         If Not IO.File.Exists(__in_fileB) Then Return False
+        If IO.Path.GetFullPath(__in_fileA).ToLower = IO.Path.GetFullPath(__in_fileB).ToLower Then Return True
         Select Case __in_Mode.ToLower
             Case "length"
                 If New IO.FileInfo(__in_fileA).Length <> New IO.FileInfo(__in_fileA).Length Then Return False
