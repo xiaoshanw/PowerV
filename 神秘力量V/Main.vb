@@ -3,7 +3,8 @@
         If inMessage.Msg = WM_SYSCOMMAND Then
             If inMessage.WParam.ToInt32() = SC_MINIMIZE Then
                 If Background_Timer.Enabled = True Then
-                    Background_Init(Background_Timer.Enabled)
+                    Me.Visible = False
+                    Background_Icon.Visible = True
                     Exit Sub
                 End If
             End If
@@ -971,11 +972,15 @@
                 tDouble += Delete_File(Path_Fix(tDNFPath.Text + "\LagLog.txt"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
                 tDouble += Delete_File(Path_Fix(tDNFPath.Text + "\BugTrace.log"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
                 tDouble += Delete_File(Path_Fix(tDNFPath.Text + "\awesomium.log"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
-                For Each vline In IO.Directory.GetFiles(Path_Fix(tDNFPath.Text + "\TCLS\tlog"))
-                    If vline.ToLower.EndsWith(".log") Then
-                        tDouble += Delete_File(vline, TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
-                    End If
-                Next
+                If IO.Directory.Exists(Path_Fix(tDNFPath.Text + "\TCLS\tlog")) Then
+                    For Each vline In IO.Directory.GetFiles(Path_Fix(tDNFPath.Text + "\TCLS\tlog"))
+                        If vline.ToLower.EndsWith(".log") Then
+                            tDouble += Delete_File(vline, TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
+                        End If
+                    Next
+                End If
+
+
                 tDouble += Delete_Tree_Recursive(Path_Fix(tDNFPath.Text + "\start\Cross\Logs"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
                 tDouble += Delete_Tree_Recursive(Path_Fix(tDNFPath.Text + "\Logs"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
                 tDouble += Delete_Tree_Recursive(Path_Fix(tDNFPath.Text + "\start\Cross\FileCache"), TextBox5, "尝试删除[${Name}] ${Length}" + vbCrLf)
@@ -1130,10 +1135,6 @@
         End If
     End Sub
 
-    Private Sub Background_Init(ByVal inBoolean As Boolean)
-        Background_Icon.Visible = inBoolean
-        Me.Visible = Not inBoolean    'DDDEBUG
-    End Sub
 
     Private Sub Button19_Click(sender As Object, e As EventArgs) Handles Button19.Click
         If IsNumeric(TextBox8.Text) Then
@@ -1141,9 +1142,8 @@
         Else
             Background_Timer.Interval = 5000
         End If
-        '设置icon
-        Background_Init(Not Background_Timer.Enabled)
         Application.DoEvents()
+        Me.Visible = Background_Timer.Enabled
         '预处理
         Select Case Background_Timer.Enabled
             Case True
@@ -1169,8 +1169,8 @@
         Else
             printl("后台模式关闭")
         End If
-
-
+        '设置icon
+        Background_Icon.Visible = Background_Timer.Enabled
     End Sub
 
     Private Sub BackGround_Timer_Tick(sender As Object, e As EventArgs) Handles Background_Timer.Tick
