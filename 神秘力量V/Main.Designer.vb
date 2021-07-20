@@ -23,27 +23,28 @@ Partial Class Main
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("设置游戏目录")
-        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("设置", New System.Windows.Forms.TreeNode() {TreeNode1})
-        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("禁用设置 (禁用|解禁)")
-        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("禁用清单 (修改清单|手动模式)")
-        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("常规禁用 (IFEO+ACL)", New System.Windows.Forms.TreeNode() {TreeNode3, TreeNode4})
-        Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("拦截设置 (注册|卸载|启停)")
-        Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("拦截清单 (修改清单)")
-        Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("驱动拦截 (vLimit)", New System.Windows.Forms.TreeNode() {TreeNode6, TreeNode7})
-        Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("后台模式")
-        Dim TreeNode10 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("chkdsk磁盘检查")
-        Dim TreeNode11 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("修复文件权限")
-        Dim TreeNode12 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("精简客户端")
-        Dim TreeNode13 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Win10自动维护")
-        Dim TreeNode14 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("重置游戏配置文件")
-        Dim TreeNode15 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("卸载DNF")
-        Dim TreeNode16 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("蓝屏")
-        Dim TreeNode17 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("扩展功能", New System.Windows.Forms.TreeNode() {TreeNode9, TreeNode10, TreeNode11, TreeNode12, TreeNode13, TreeNode14, TreeNode15, TreeNode16})
-        Dim TreeNode18 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("软件更新")
-        Dim TreeNode19 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("联系我们&提交建议")
-        Dim TreeNode20 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("赞助开发者")
-        Dim TreeNode21 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("其他功能(更新+联系+赞助)", New System.Windows.Forms.TreeNode() {TreeNode18, TreeNode19, TreeNode20})
+        Dim TreeNode111 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("设置游戏目录")
+        Dim TreeNode112 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("设置", New System.Windows.Forms.TreeNode() {TreeNode111})
+        Dim TreeNode113 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("禁用设置 (禁用|解禁)")
+        Dim TreeNode114 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("禁用清单 (修改清单|手动模式)")
+        Dim TreeNode115 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("常规禁用 (IFEO+ACL)", New System.Windows.Forms.TreeNode() {TreeNode113, TreeNode114})
+        Dim TreeNode116 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("拦截设置 (注册|卸载|启停)")
+        Dim TreeNode117 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("拦截清单 (修改清单)")
+        Dim TreeNode118 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("驱动拦截 (vLimit)", New System.Windows.Forms.TreeNode() {TreeNode116, TreeNode117})
+        Dim TreeNode119 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("后台模式")
+        Dim TreeNode120 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("客户端检查(可清理补丁)")
+        Dim TreeNode121 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("chkdsk磁盘检查")
+        Dim TreeNode122 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("修复文件权限")
+        Dim TreeNode123 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("精简客户端")
+        Dim TreeNode124 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Win10自动维护")
+        Dim TreeNode125 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("重置游戏配置文件")
+        Dim TreeNode126 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("卸载DNF")
+        Dim TreeNode127 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("蓝屏")
+        Dim TreeNode128 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("扩展功能", New System.Windows.Forms.TreeNode() {TreeNode119, TreeNode120, TreeNode121, TreeNode122, TreeNode123, TreeNode124, TreeNode125, TreeNode126, TreeNode127})
+        Dim TreeNode129 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("软件更新")
+        Dim TreeNode130 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("联系我们&提交建议")
+        Dim TreeNode131 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("赞助开发者")
+        Dim TreeNode132 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("其他功能(更新+联系+赞助)", New System.Windows.Forms.TreeNode() {TreeNode129, TreeNode130, TreeNode131})
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.Log = New System.Windows.Forms.TextBox()
         Me.gGamePath = New System.Windows.Forms.GroupBox()
@@ -152,6 +153,7 @@ Partial Class Main
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Button24 = New System.Windows.Forms.Button()
         Me.gExtra_Background = New System.Windows.Forms.GroupBox()
+        Me.LinkLabel2 = New System.Windows.Forms.LinkLabel()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.ComboBox1 = New System.Windows.Forms.ComboBox()
         Me.CheckBox8 = New System.Windows.Forms.CheckBox()
@@ -192,6 +194,19 @@ Partial Class Main
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.gDriverInfo = New System.Windows.Forms.GroupBox()
         Me.TextBox16 = New System.Windows.Forms.TextBox()
+        Me.gExtra_filecheck = New System.Windows.Forms.GroupBox()
+        Me.Button32 = New System.Windows.Forms.Button()
+        Me.Button31 = New System.Windows.Forms.Button()
+        Me.Button30 = New System.Windows.Forms.Button()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
+        Me.Label32 = New System.Windows.Forms.Label()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.Label30 = New System.Windows.Forms.Label()
         Me.gGamePath.SuspendLayout()
         Me.gNList.SuspendLayout()
         CType(Me.NList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -220,6 +235,8 @@ Partial Class Main
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gDriverInfo.SuspendLayout()
+        Me.gExtra_filecheck.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Log
@@ -309,49 +326,51 @@ Partial Class Main
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.tv.Location = New System.Drawing.Point(12, 12)
         Me.tv.Name = "tv"
-        TreeNode1.Name = "节点1"
-        TreeNode1.Text = "设置游戏目录"
-        TreeNode2.Name = "节点0"
-        TreeNode2.Text = "设置"
-        TreeNode3.Name = "节点3"
-        TreeNode3.Text = "禁用设置 (禁用|解禁)"
-        TreeNode4.Name = "节点4"
-        TreeNode4.Text = "禁用清单 (修改清单|手动模式)"
-        TreeNode5.Name = "节点2"
-        TreeNode5.Text = "常规禁用 (IFEO+ACL)"
-        TreeNode6.Name = "节点6"
-        TreeNode6.Text = "拦截设置 (注册|卸载|启停)"
-        TreeNode7.Name = "节点7"
-        TreeNode7.Text = "拦截清单 (修改清单)"
-        TreeNode8.Name = "节点5"
-        TreeNode8.Text = "驱动拦截 (vLimit)"
-        TreeNode9.Name = "节点9"
-        TreeNode9.Text = "后台模式"
-        TreeNode10.Name = "节点10"
-        TreeNode10.Text = "chkdsk磁盘检查"
-        TreeNode11.Name = "节点11"
-        TreeNode11.Text = "修复文件权限"
-        TreeNode12.Name = "节点13"
-        TreeNode12.Text = "精简客户端"
-        TreeNode13.Name = "节点14"
-        TreeNode13.Text = "Win10自动维护"
-        TreeNode14.Name = "节点16"
-        TreeNode14.Text = "重置游戏配置文件"
-        TreeNode15.Name = "节点17"
-        TreeNode15.Text = "卸载DNF"
-        TreeNode16.Name = "节点18"
-        TreeNode16.Text = "蓝屏"
-        TreeNode17.Name = "节点8"
-        TreeNode17.Text = "扩展功能"
-        TreeNode18.Name = "节点1"
-        TreeNode18.Text = "软件更新"
-        TreeNode19.Name = "节点2"
-        TreeNode19.Text = "联系我们&提交建议"
-        TreeNode20.Name = "节点3"
-        TreeNode20.Text = "赞助开发者"
-        TreeNode21.Name = "节点0"
-        TreeNode21.Text = "其他功能(更新+联系+赞助)"
-        Me.tv.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode2, TreeNode5, TreeNode8, TreeNode17, TreeNode21})
+        TreeNode111.Name = "节点1"
+        TreeNode111.Text = "设置游戏目录"
+        TreeNode112.Name = "节点0"
+        TreeNode112.Text = "设置"
+        TreeNode113.Name = "节点3"
+        TreeNode113.Text = "禁用设置 (禁用|解禁)"
+        TreeNode114.Name = "节点4"
+        TreeNode114.Text = "禁用清单 (修改清单|手动模式)"
+        TreeNode115.Name = "节点2"
+        TreeNode115.Text = "常规禁用 (IFEO+ACL)"
+        TreeNode116.Name = "节点6"
+        TreeNode116.Text = "拦截设置 (注册|卸载|启停)"
+        TreeNode117.Name = "节点7"
+        TreeNode117.Text = "拦截清单 (修改清单)"
+        TreeNode118.Name = "节点5"
+        TreeNode118.Text = "驱动拦截 (vLimit)"
+        TreeNode119.Name = "节点9"
+        TreeNode119.Text = "后台模式"
+        TreeNode120.Name = "节点0"
+        TreeNode120.Text = "客户端检查(可清理补丁)"
+        TreeNode121.Name = "节点10"
+        TreeNode121.Text = "chkdsk磁盘检查"
+        TreeNode122.Name = "节点11"
+        TreeNode122.Text = "修复文件权限"
+        TreeNode123.Name = "节点13"
+        TreeNode123.Text = "精简客户端"
+        TreeNode124.Name = "节点14"
+        TreeNode124.Text = "Win10自动维护"
+        TreeNode125.Name = "节点16"
+        TreeNode125.Text = "重置游戏配置文件"
+        TreeNode126.Name = "节点17"
+        TreeNode126.Text = "卸载DNF"
+        TreeNode127.Name = "节点18"
+        TreeNode127.Text = "蓝屏"
+        TreeNode128.Name = "节点8"
+        TreeNode128.Text = "扩展功能"
+        TreeNode129.Name = "节点1"
+        TreeNode129.Text = "软件更新"
+        TreeNode130.Name = "节点2"
+        TreeNode130.Text = "联系我们&提交建议"
+        TreeNode131.Name = "节点3"
+        TreeNode131.Text = "赞助开发者"
+        TreeNode132.Name = "节点0"
+        TreeNode132.Text = "其他功能(更新+联系+赞助)"
+        Me.tv.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode112, TreeNode115, TreeNode118, TreeNode128, TreeNode132})
         Me.tv.Size = New System.Drawing.Size(230, 449)
         Me.tv.TabIndex = 7
         '
@@ -715,7 +734,7 @@ Partial Class Main
         Me.gDriver.Size = New System.Drawing.Size(532, 362)
         Me.gDriver.TabIndex = 9
         Me.gDriver.TabStop = False
-        Me.gDriver.Text = "拦截设置"
+        Me.gDriver.Text = "证书状态"
         '
         'Button10
         '
@@ -866,9 +885,10 @@ Partial Class Main
         Me.Label6.AutoSize = True
         Me.Label6.Location = New System.Drawing.Point(6, 311)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(209, 36)
+        Me.Label6.Size = New System.Drawing.Size(509, 48)
         Me.Label6.TabIndex = 2
-        Me.Label6.Text = "说明：" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "①启用驱动：设置拦截清单>注册>启动" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "②停用驱动：停止>卸载"
+        Me.Label6.Text = "说明：" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "①启用驱动：设置拦截清单>注册>启动" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "②停用驱动：停止>卸载" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "③如果启动失败，请检查是否已设置拦截清单，及是否已安装CA证书(WIndows 10(" &
+    "20H2)或更高)"
         '
         'gHello
         '
@@ -1427,6 +1447,7 @@ Partial Class Main
         Me.gExtra_Background.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.gExtra_Background.Controls.Add(Me.LinkLabel2)
         Me.gExtra_Background.Controls.Add(Me.LinkLabel1)
         Me.gExtra_Background.Controls.Add(Me.ComboBox1)
         Me.gExtra_Background.Controls.Add(Me.CheckBox8)
@@ -1447,6 +1468,18 @@ Partial Class Main
         Me.gExtra_Background.TabStop = False
         Me.gExtra_Background.Text = "后台模式"
         '
+        'LinkLabel2
+        '
+        Me.LinkLabel2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LinkLabel2.AutoSize = True
+        Me.LinkLabel2.Location = New System.Drawing.Point(473, 163)
+        Me.LinkLabel2.Name = "LinkLabel2"
+        Me.LinkLabel2.Size = New System.Drawing.Size(53, 12)
+        Me.LinkLabel2.TabIndex = 17
+        Me.LinkLabel2.TabStop = True
+        Me.LinkLabel2.Text = "启用功能"
+        Me.LinkLabel2.Visible = False
+        '
         'LinkLabel1
         '
         Me.LinkLabel1.AutoSize = True
@@ -1465,7 +1498,7 @@ Partial Class Main
         Me.ComboBox1.Items.AddRange(New Object() {"模式A：提权冻结(单开限定)", "模式B：替换运行"})
         Me.ComboBox1.Location = New System.Drawing.Point(308, 160)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(218, 20)
+        Me.ComboBox1.Size = New System.Drawing.Size(159, 20)
         Me.ComboBox1.TabIndex = 15
         '
         'CheckBox8
@@ -1746,7 +1779,7 @@ Partial Class Main
         Me.Button26.Name = "Button26"
         Me.Button26.Size = New System.Drawing.Size(266, 23)
         Me.Button26.TabIndex = 13
-        Me.Button26.Text = "点击加入交♂流♂群（入群费1.0元）"
+        Me.Button26.Text = "点击加入交♂流♂群"
         Me.Button26.UseVisualStyleBackColor = True
         '
         'TextBox13
@@ -1782,7 +1815,7 @@ Partial Class Main
         Me.Button25.Name = "Button25"
         Me.Button25.Size = New System.Drawing.Size(246, 23)
         Me.Button25.TabIndex = 5
-        Me.Button25.Text = "点击加入交流群（入群费0.1元）"
+        Me.Button25.Text = "点击加入交流群(车速过快不定期死亡)"
         Me.Button25.UseVisualStyleBackColor = True
         '
         'gOther_Donate
@@ -1855,19 +1888,162 @@ Partial Class Main
         Me.TextBox16.TabIndex = 0
         Me.TextBox16.Text = resources.GetString("TextBox16.Text")
         '
+        'gExtra_filecheck
+        '
+        Me.gExtra_filecheck.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.gExtra_filecheck.Controls.Add(Me.Button32)
+        Me.gExtra_filecheck.Controls.Add(Me.Button31)
+        Me.gExtra_filecheck.Controls.Add(Me.Button30)
+        Me.gExtra_filecheck.Controls.Add(Me.DataGridView1)
+        Me.gExtra_filecheck.Controls.Add(Me.ComboBox3)
+        Me.gExtra_filecheck.Controls.Add(Me.Label32)
+        Me.gExtra_filecheck.Controls.Add(Me.ComboBox2)
+        Me.gExtra_filecheck.Controls.Add(Me.Label31)
+        Me.gExtra_filecheck.Controls.Add(Me.Label30)
+        Me.gExtra_filecheck.Location = New System.Drawing.Point(248, 12)
+        Me.gExtra_filecheck.Name = "gExtra_filecheck"
+        Me.gExtra_filecheck.Size = New System.Drawing.Size(532, 362)
+        Me.gExtra_filecheck.TabIndex = 24
+        Me.gExtra_filecheck.TabStop = False
+        Me.gExtra_filecheck.Text = "客户端检查(可清理补丁)"
+        '
+        'Button32
+        '
+        Me.Button32.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button32.Location = New System.Drawing.Point(381, 137)
+        Me.Button32.Name = "Button32"
+        Me.Button32.Size = New System.Drawing.Size(145, 23)
+        Me.Button32.TabIndex = 13
+        Me.Button32.Text = "删除清单内文件"
+        Me.Button32.UseVisualStyleBackColor = True
+        '
+        'Button31
+        '
+        Me.Button31.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button31.Location = New System.Drawing.Point(381, 108)
+        Me.Button31.Name = "Button31"
+        Me.Button31.Size = New System.Drawing.Size(145, 23)
+        Me.Button31.TabIndex = 12
+        Me.Button31.Text = "移除选中文件"
+        Me.Button31.UseVisualStyleBackColor = True
+        '
+        'Button30
+        '
+        Me.Button30.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button30.Location = New System.Drawing.Point(381, 79)
+        Me.Button30.Name = "Button30"
+        Me.Button30.Size = New System.Drawing.Size(145, 23)
+        Me.Button30.TabIndex = 11
+        Me.Button30.Text = "扫描文件"
+        Me.Button30.UseVisualStyleBackColor = True
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column11, Me.Column12, Me.Column13})
+        Me.DataGridView1.Location = New System.Drawing.Point(8, 81)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.ReadOnly = True
+        Me.DataGridView1.RowHeadersVisible = False
+        Me.DataGridView1.RowTemplate.Height = 23
+        Me.DataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridView1.Size = New System.Drawing.Size(367, 234)
+        Me.DataGridView1.TabIndex = 10
+        '
+        'Column11
+        '
+        Me.Column11.HeaderText = "路径"
+        Me.Column11.Name = "Column11"
+        Me.Column11.ReadOnly = True
+        Me.Column11.Visible = False
+        '
+        'Column12
+        '
+        Me.Column12.HeaderText = "文件名"
+        Me.Column12.Name = "Column12"
+        Me.Column12.ReadOnly = True
+        '
+        'Column13
+        '
+        Me.Column13.HeaderText = "检测原因"
+        Me.Column13.Name = "Column13"
+        Me.Column13.ReadOnly = True
+        '
+        'ComboBox3
+        '
+        Me.ComboBox3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox3.FormattingEnabled = True
+        Me.ComboBox3.Items.AddRange(New Object() {"1.仅图像NPK文件：含官方NPK、图像补丁", "2.仅音频NPK文件：含官方NPK、音频补丁", "3.图像及音频NPK文件：含官方NPK、各种补丁"})
+        Me.ComboBox3.Location = New System.Drawing.Point(85, 49)
+        Me.ComboBox3.Name = "ComboBox3"
+        Me.ComboBox3.Size = New System.Drawing.Size(441, 20)
+        Me.ComboBox3.TabIndex = 9
+        '
+        'Label32
+        '
+        Me.Label32.AutoSize = True
+        Me.Label32.Location = New System.Drawing.Point(14, 54)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(53, 12)
+        Me.Label32.TabIndex = 8
+        Me.Label32.Text = "检查对象"
+        '
+        'ComboBox2
+        '
+        Me.ComboBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Items.AddRange(New Object() {"1.游戏自带清单：游戏自带清单文件", "2.网络更新清单：正式服最新清单文件（暂不可用）"})
+        Me.ComboBox2.Location = New System.Drawing.Point(85, 20)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(441, 20)
+        Me.ComboBox2.TabIndex = 7
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Location = New System.Drawing.Point(14, 25)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(65, 12)
+        Me.Label31.TabIndex = 6
+        Me.Label31.Text = "清单源文件"
+        '
+        'Label30
+        '
+        Me.Label30.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(9, 318)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(245, 36)
+        Me.Label30.TabIndex = 5
+        Me.Label30.Text = "说明：" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "①根据游戏清单文件，扫描客户端文件完整性" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "②可用于清理补丁"
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(792, 473)
-        Me.Controls.Add(Me.gExtra_Background)
-        Me.Controls.Add(Me.gExtra_trim)
-        Me.Controls.Add(Me.gExtra_DNFCFG)
-        Me.Controls.Add(Me.gDriverInfo)
-        Me.Controls.Add(Me.gOther_Contact)
-        Me.Controls.Add(Me.gOther_Donate)
+        Me.Controls.Add(Me.gExtra_filecheck)
         Me.Controls.Add(Me.gHello)
         Me.Controls.Add(Me.gDriver)
+        Me.Controls.Add(Me.gExtra_trim)
+        Me.Controls.Add(Me.gGamePath)
+        Me.Controls.Add(Me.gOther_Contact)
+        Me.Controls.Add(Me.gExtra_Background)
+        Me.Controls.Add(Me.gExtra_DNFCFG)
+        Me.Controls.Add(Me.gDriverInfo)
+        Me.Controls.Add(Me.gOther_Donate)
         Me.Controls.Add(Me.gNormal)
         Me.Controls.Add(Me.gOther_Update)
         Me.Controls.Add(Me.gDList)
@@ -1879,7 +2055,6 @@ Partial Class Main
         Me.Controls.Add(Me.gExtra_Win10MTC)
         Me.Controls.Add(Me.gExtra_takeown)
         Me.Controls.Add(Me.gExtra_chkdsk)
-        Me.Controls.Add(Me.gGamePath)
         Me.Controls.Add(Me.tv)
         Me.Controls.Add(Me.Log)
         Me.Name = "Main"
@@ -1933,6 +2108,9 @@ Partial Class Main
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gDriverInfo.ResumeLayout(False)
         Me.gDriverInfo.PerformLayout()
+        Me.gExtra_filecheck.ResumeLayout(False)
+        Me.gExtra_filecheck.PerformLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2084,4 +2262,18 @@ Partial Class Main
     Friend WithEvents CheckBox10 As CheckBox
     Friend WithEvents CheckBox9 As CheckBox
     Friend WithEvents LinkLabel1 As LinkLabel
+    Friend WithEvents LinkLabel2 As LinkLabel
+    Friend WithEvents gExtra_filecheck As GroupBox
+    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents Label31 As Label
+    Friend WithEvents Label30 As Label
+    Friend WithEvents ComboBox3 As ComboBox
+    Friend WithEvents Label32 As Label
+    Friend WithEvents Button30 As Button
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents Column11 As DataGridViewTextBoxColumn
+    Friend WithEvents Column12 As DataGridViewTextBoxColumn
+    Friend WithEvents Column13 As DataGridViewTextBoxColumn
+    Friend WithEvents Button31 As Button
+    Friend WithEvents Button32 As Button
 End Class

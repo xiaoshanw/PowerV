@@ -12,6 +12,11 @@
     Public Last_DNF_PID As Integer
     Public TREE_MANUAL_SELECT As Boolean = True
     Public Hide_Active As Boolean = False
+    Structure AUTO_LST_TYPE
+        Dim Path As String
+        Dim Length As Integer
+        Dim CMD5 As String
+    End Structure
 #If DEBUG Then
     Public DEBUG_FLAG = True
 #Else
@@ -40,7 +45,7 @@
         If eax = 4 Then Return True Else Return False
     End Function
     Public Function Path_Fix(ByVal inString As String) As String
-        Return Replace(inString, "\\", "\")
+        Return Replace(Replace(inString, "\\", "\"), """", "")
     End Function
     Public Function String_to_Base64(ByVal inString As String) As String
         Try
@@ -398,6 +403,74 @@
         End Select
         Return True
     End Function
+    Public Sub CheckFileWithAUTOLST(ByVal __in_gamePath As String, ByVal __in_checkPath As String, ByVal __in_autolst As String, ByRef __inout_exl As DataGridView)
+        Try
+            Dim lstCount = CInt(ReadINI(__in_autolst, "CheckFile", "TotalNum"))
+            Dim autolst = New ArrayList
+            Dim tautolst As AUTO_LST_TYPE
+            Dim fs = New IO.StreamReader(__in_autolst)
+
+            'Dim tString As String
+            Dim tStringEx As String()
+            While True
+                If Trim(fs.ReadLine).ToLower = "[autocheck]" Then Exit While
+                If fs.EndOfStream Then fs.Close() : Exit While
+            End While
+            For i = 0 To lstCount - 1
+                'tString = fs.ReadLine
+                tStringEx = Split(fs.ReadLine, " ")
+                If tStringEx.Length = 4 Then
+                    tautolst = New AUTO_LST_TYPE
+                    tautolst.Path = Path_Fix(__in_gamePath + "\" + tStringEx(0)).ToLower
+                    tautolst.CMD5 = tStringEx(1).ToLower
+                    tautolst.Length = CInt(tStringEx(2))
+                    autolst.Add(tautolst)
+                End If
+            Next
+            CheckFileWithAUTOLST_Recall(__in_checkPath, autolst, __inout_exl)
+
+        Catch ex As Exception
+            PrintLine(ex.Message)
+        End Try
+
+
+    End Sub
+    Public Sub CheckFileWithAUTOLST_Recall(ByVal __in_checkPath As String, ByRef __inout_autolst As ArrayList, ByRef __inout_exl As DataGridView)
+        Dim tFile As String
+        For Each sFile In IO.Directory.GetFiles(__in_checkPath)
+            Try
+                tFile = sFile.ToLower
+                For i = 0 To __inout_autolst.Count - 1
+                    If __inout_autolst(i).Path = tFile Then
+                        If __inout_autolst(i).Length = New IO.FileInfo(tFile).Length Then
+                            Main.printl("[OK]" + sFile)
+                        Else
+                            Main.printl("[Error]" + sFile)
+                            __inout_exl.Rows.Add(sFile, IO.Path.GetFileName(sFile), "大小不匹配")
+                        End If
+
+                        __inout_autolst.RemoveAt(i)
+                        Application.DoEvents()
+                        Exit For
+                    End If
+                    If i = __inout_autolst.Count - 1 Then
+                        Main.printl("[Error]" + sFile)
+                        __inout_exl.Rows.Add(sFile, IO.Path.GetFileName(sFile), "文件非官方")
+                        Application.DoEvents()
+                        Exit For
+                    End If
+                Next
+
+
+            Catch ex As Exception
+
+            End Try
+        Next
+        For Each sDirectory In IO.Directory.GetDirectories(__in_checkPath)
+            CheckFileWithAUTOLST_Recall(sDirectory, __inout_autolst, __inout_exl)
+        Next
+    End Sub
+
 End Module
 Public Class Update_Class
     Public SrcForm As Main

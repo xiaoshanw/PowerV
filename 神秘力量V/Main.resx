@@ -173,19 +173,21 @@
   <data name="TextBox3.Text" xml:space="preserve">
     <value>①后台模式：让软件在后台自动关闭游戏成功启动后的残余启动器
 
-②chkdsk磁盘检查：用chkdsk工具检查磁盘错误、重置NTFS索引等
+②客户端检查：检查游戏文件完整性，确认文件是否有修改，可清理游戏补丁
 
-③修复文件权限：修复所有文件权限，避免重复使用多个类似软件导致无法更新
+③chkdsk磁盘检查：用chkdsk工具检查磁盘错误、重置NTFS索引等
 
-④精简客户端：删除更新安装包、管家安装包等
+④修复文件权限：修复所有文件权限，避免重复使用多个类似软件导致无法更新
 
-⑤Win10自动维护：提供禁用Win10自动维护功能以避免长时间挂机导致蓝屏
+⑤精简客户端：删除更新安装包、管家安装包等
 
-⑥重置游戏配置文件：重置配置文件避免登录无法上线、频道错乱等
+⑥Win10自动维护：提供禁用Win10自动维护功能以避免长时间挂机导致蓝屏
 
-⑦卸载DNF：字面意思
+⑦重置游戏配置文件：重置配置文件避免登录无法上线、频道错乱等
 
-⑧蓝屏：字面意思</value>
+⑧卸载DNF：字面意思
+
+⑨蓝屏：字面意思</value>
   </data>
   <metadata name="Background_Timer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>285, 17</value>
@@ -217,6 +219,24 @@
 
 </value>
   </data>
+  <metadata name="Column11.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Column12.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Column13.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Column11.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Column12.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Column13.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>82</value>
   </metadata>

@@ -88,6 +88,16 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  查找 System.Byte[] 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property EVRootCA() As Byte()
+            Get
+                Dim obj As Object = ResourceManager.GetObject("EVRootCA", resourceCulture)
+                Return CType(obj,Byte())
+            End Get
+        End Property
+        
+        '''<summary>
         '''  查找类似 这是一份使用说明，快速上手请阅读：
         '''①左侧模块为功能清单，点击即可进入
         '''②右侧模块为对应功能操作面板
@@ -107,14 +117,18 @@ Namespace My.Resources
         '''②驱动拦截-拦截设置-注册驱动服务-启动驱动服务
         '''
         '''更新日志：
+        '''2021-xx-xx Ver:0.1.2.0
+        '''.新增客户端检查功能，可检查游戏完整性，删除多余补丁
+        '''.优化后台模式，默认禁用SGuard限制
+        '''.修改加群描述
+        '''
+        '''2021-03-04 Ver:0.1.1.2
+        '''1.修复后台模式开启时顿卡的BUG
+        '''2.修复精简客户端偶尔会崩溃的BUG
+        '''
         '''2021-03-02 Ver:0.1.1.1
         '''1.修复开启后台模式后界面偶尔会顿卡的BUG
-        '''2.修复后台模式中，限制SGuard方案模式A中关于提权偶尔出现弹窗的BUG
-        '''3.修复后台模式中，限制SGuard方案模式B中关于文件处理过程偶尔出现弹窗的BUG
-        '''
-        '''2021-03-01 Ver:0.1.1.0
-        '''1.允许程序多开，添加启动参数-MultiRun可屏蔽多开提示
-        '''2.优化后台模式中对SGuard的操作方式，并提供2种优化方案， [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''2.修复后台模式中，限制SGuard方案模式A中关 [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Friend ReadOnly Property Hello() As String
             Get

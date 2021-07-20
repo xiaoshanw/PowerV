@@ -34,6 +34,7 @@
         Dim pi As Reflection.PropertyInfo = DataGridView_Type.GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance Or System.Reflection.BindingFlags.NonPublic)
         pi.SetValue(NList, True, Nothing)
         pi.SetValue(DList, True, Nothing)
+        pi.SetValue(DataGridView1, True, Nothing)
         tv.ExpandAll()
         tDNFPath.Text = ReadINI(INI, "Settings", "DNFPath", "")
         If DEBUG_FLAG Then
@@ -66,7 +67,17 @@
             gHello.BringToFront() 'DDDebug
         Else
             gOther_Donate.BringToFront()
-            MsgBox("检测到首次运行本软件，使用本软件功能前，请务必查看说明说明（位于各操作面板底部")
+            MsgBox("检测到首次运行本软件，使用本软件功能前，请务必查看说明说明（位于各操作面板底部)" + vbCrLf + vbCrLf + "如果您通过付费渠道获得本软件，这表示您已上当受骗，请尽快联系并追缴已支付资金" + vbCrLf + vbCrLf + "本软件免费（支持赞助）")
+            Dim tMsg = "【警告】"
+            tMsg += vbCrLf + "本软件根据功能需要，会调用如下功能："
+            tMsg += vbCrLf + "文件操作：操作必要的文件，如创建配置文件、ACL禁用、客户端检查/精简、磁盘检查等"
+            tMsg += vbCrLf + "注册表操作：IFEO拦截、驱动拦截、修改Win10自动维护策略等"
+            tMsg += vbCrLf + "驱动操作：驱动拦截"
+            tMsg += vbCrLf + "证书操作：驱动拦截"
+            tMsg += vbCrLf + "网络访问：自动更新" + vbCrLf
+            tMsg += vbCrLf + "如对上述权限有疑问或不同意上述操作，请关闭本程序"
+            tMsg += vbCrLf + "本警告仅在首次使用本软件时提示"
+            MsgBox(tMsg)
             IO.File.Create(CONFIG + "\FirstRun").Close()
         End If
 
@@ -116,7 +127,7 @@
                             Next
                             IO.File.Delete(vLimit_SYS)
                             IO.File.WriteAllBytes(vLimit_SYS, My.Resources.vLimit)
-                            MsgBox("更新成功，请进入驱动拦截界面重新启动拦截功能")
+                            MsgBox("更新成功" + vbCrLf + "若当前系统为Windows 10(20H2)或更高，需要卸载驱动并重新注册")
                         Catch ex2 As Exception
                             MsgBox("更新失败[" + ex2.Message + "]")
                         End Try
@@ -273,6 +284,10 @@
                     gOther_Donate.BringToFront()
                 Case "驱动拦截 (vLimit)"
                     gDriverInfo.BringToFront()
+                Case "客户端检查(可清理补丁)"
+                    gExtra_filecheck.BringToFront()
+                    ComboBox2.Text = "1.游戏自带清单：游戏自带清单文件"
+                    ComboBox3.Text = "1.仅图像NPK文件：含官方NPK、图像补丁"
             End Select
         End If
     End Sub
@@ -792,6 +807,29 @@
                 CloseServiceHandle(CreateService(hSCManager, "vLimit", "vLimit", SERVICE_START, SERVICE_KERNEL_DRIVER, SERVICE_DEMAND_START, SERVICE_ERROR_IGNORE, tDPath.Text, 0, 0, 0, 0, 0))
                 CloseServiceHandle(hSCManager)
                 printl("注册服务成功")
+                '20210719/新增证书
+                Dim isCrt = False
+                Try
+
+                    '
+                    Dim CAStore = New System.Security.Cryptography.X509Certificates.X509Store(Security.Cryptography.X509Certificates.StoreName.Root, Security.Cryptography.X509Certificates.StoreLocation.LocalMachine)
+                    CAStore.Open(Security.Cryptography.X509Certificates.OpenFlags.ReadWrite)
+                    For Each tCrt In CAStore.Certificates
+                        If tCrt.SubjectName.Name.Contains("JemmyLoveJenny EV Root CA") Then
+                            isCrt = True
+                            Exit For
+                        End If
+                    Next
+                    If Not isCrt Then
+                        Dim CAcrt = New System.Security.Cryptography.X509Certificates.X509Certificate2(My.Resources.EVRootCA, "")
+                        CAStore.Add(CAcrt)
+                    End If
+                    CAStore.Close()
+                Catch ex As Exception
+
+                End Try
+
+
             Catch ex As Exception
                 printl(ex.Message)
             End Try
@@ -857,6 +895,19 @@
         If tDRStatus.Text = "正常" Then
             Button8_Click(Me, e)
         End If
+
+        '20210719/新增证书
+        Dim CAStore = New System.Security.Cryptography.X509Certificates.X509Store(Security.Cryptography.X509Certificates.StoreName.Root, Security.Cryptography.X509Certificates.StoreLocation.LocalMachine)
+        CAStore.Open(Security.Cryptography.X509Certificates.OpenFlags.ReadWrite)
+        For Each tCrt In CAStore.Certificates
+            If tCrt.SubjectName.Name.Contains("JemmyLoveJenny EV Root CA") Then
+                Dim CAcrt = New System.Security.Cryptography.X509Certificates.X509Certificate2(My.Resources.EVRootCA, "")
+                CAStore.Remove(CAcrt)
+                Exit For
+            End If
+        Next
+        CAStore.Close()
+
         If tDSStatus.Text = "正常" Then
             Dim str = IO.Path.GetTempFileName
             Dim ServiceInstallerObj = New ServiceProcess.ServiceInstaller
@@ -1007,7 +1058,7 @@
             printl("共删除" + Format(tDouble, "#,###.##") + " mb文件")
             Button15.Enabled = True
         Else
-                printl("游戏路径设置错误")
+            printl("游戏路径设置错误")
         End If
 
     End Sub
@@ -1118,7 +1169,16 @@
         CheckBox3.Checked = Not IO.File.Exists(CONFIG + "\NoTGuardSvc")
         CheckBox4.Checked = Not IO.File.Exists(CONFIG + "\NoBallon")
         CheckBox7.Checked = Not IO.File.Exists(CONFIG + "\NoTesService")
-        CheckBox8.Checked = Not IO.File.Exists(CONFIG + "\NoSGuard")
+
+
+        CheckBox8.Enabled = IO.File.Exists(CONFIG + "\ForceSGuard")
+        ComboBox1.Enabled = IO.File.Exists(CONFIG + "\ForceSGuard")
+        LinkLabel1.Enabled = IO.File.Exists(CONFIG + "\ForceSGuard")
+        LinkLabel2.Visible = Not IO.File.Exists(CONFIG + "\ForceSGuard")
+
+        CheckBox8.Checked = IO.File.Exists(CONFIG + "\ForceSGuard") And (Not IO.File.Exists(CONFIG + "\NoSGuard"))
+
+
         CheckBox5.Checked = IO.File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\" + Application.ProductName + ".bat")
         If IO.File.Exists(CONFIG + "\SGuard_Mode") Then
             Dim tString = IO.File.ReadAllText(CONFIG + "\SGuard_Mode")
@@ -1492,6 +1552,7 @@
 
     Private Sub CheckBox8_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox8.CheckedChanged
         If Not bkCheckBox_Checked Then Exit Sub
+
         Dim tStr = CONFIG + "\NoSGuard"
         If CheckBox8.Checked Then
             If IO.File.Exists(tStr) Then IO.File.Delete(tStr)
@@ -1549,5 +1610,72 @@
         For Each sfile In IO.Directory.GetFiles(__in_pathSrc)
             IO.File.Copy(sfile, sfile.Replace(__in_pathSrc, __in_pathDes))
         Next
+    End Sub
+
+    Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
+
+        If MsgBox("警告，开启SGuard限制会使游戏更不稳定，可能会诱发诸如""3009-游戏安全数据上报异常""等异常" + vbCrLf + "若出现类似异常建议关闭该功能", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+            IO.File.Create(CONFIG + "\ForceSGuard").Close()
+            Background_Check()
+        End If
+
+    End Sub
+
+    Private Sub Button30_Click(sender As Object, e As EventArgs) Handles Button30.Click
+        Dim tCheckPath = ""
+        Dim tautolst = ""
+        Select Case ComboBox2.SelectedIndex
+            Case 0, 1
+                tautolst = Path_Fix(tDNFPath.Text + "\auto.lst")
+        End Select
+        Select Case ComboBox3.SelectedIndex
+            Case 0, 2
+                tCheckPath = Path_Fix(tDNFPath.Text + "\ImagePacks2")
+            Case 1
+                tCheckPath = Path_Fix(tDNFPath.Text + "\SoundPacks")
+                'Case 3
+                'tCheckPath = tDNFPath.Text
+        End Select
+
+        '0.仅图像NPK文件：含官方NPK、图像补丁
+        '1.仅音频NPK文件：含官方NPK、音频补丁
+        '2.图像及音频NPK文件：含官方NPK、各种补丁
+        '3.客户端所有文件：客户端完整的所有文件
+        DataGridView1.Rows.Clear()
+        CheckFileWithAUTOLST(tDNFPath.Text, tCheckPath, tautolst, DataGridView1)
+        tCheckPath = tDNFPath.Text + "\SoundPacks"
+        If ComboBox2.SelectedIndex = 2 Then CheckFileWithAUTOLST(tDNFPath.Text, tCheckPath, tautolst, DataGridView1)
+        MsgBox("扫描结束，请将需要保留的文件移除清单" + vbCrLf + "选择保留的文件，然后点击移除选中清单按钮，可多选")
+    End Sub
+
+    Private Sub Button31_Click(sender As Object, e As EventArgs) Handles Button31.Click
+        If DataGridView1.Rows.Count = 0 Then Exit Sub
+        Dim tString = New ArrayList
+        For i = 0 To DataGridView1.SelectedRows.Count - 1
+            tString.Add(DataGridView1.SelectedRows.Item(i).Cells(0).Value)
+        Next
+        For i = DataGridView1.Rows.Count - 1 To 0 Step -1
+            For j = tString.Count - 1 To 0 Step -1
+                If DataGridView1.Rows(i).Cells(0).Value = tString(j) Then
+                    DataGridView1.Rows.RemoveAt(i)
+                    tString.RemoveAt(j)
+                    Exit For
+                End If
+            Next
+        Next
+    End Sub
+
+    Private Sub Button32_Click(sender As Object, e As EventArgs) Handles Button32.Click
+        If MsgBox("警告，即将删除清单内所有文件，且不可恢复" + vbCrLf + “确认删除”, MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+            For i = 0 To DataGridView1.Rows.Count - 1
+                Try
+                    IO.File.Delete(DataGridView1.Rows(i).Cells(0).Value.ToString)
+                    printl("[Delete]" + DataGridView1.Rows(0).Cells(0).Value.ToString)
+                Catch ex As Exception
+                    printl(ex.Message)
+                End Try
+            Next
+            MsgBox("执行结束")
+        End If
     End Sub
 End Class

@@ -193,6 +193,7 @@
     <None Include="Resources\default_NList.txt" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\EVRootCA.crt" />
     <None Include="Resources\PsExec64" />
     <None Include="Resources\vLimit.sys" />
     <None Include="Resources\VoCytDefenderEx.exe" />
