@@ -1678,4 +1678,27 @@
             MsgBox("执行结束")
         End If
     End Sub
+
+    Private Sub 开启通配符拦截ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 开启通配符拦截ToolStripMenuItem.Click
+        Dim tstr As String
+        tstr = "警告：开启后驱动会匹配任何满足带通配符(*及?)的字符串，存在较大的操作风险" + vbCrLf
+        tstr += "如：" + vbCrLf
+        tstr += "[c?d.exe]将匹配[cmd.exe]" + vbCrLf
+        tstr += "[c*d.exe]将匹配[cmd.exe command.exe]" + vbCrLf
+        tstr += "如误操作导致系统功能异常，需进入安全模式，删除vLimit服务或修改为非自启动模式" + vbCrLf
+        tstr += "是否确认开启通配符？"
+        If MsgBox(tstr, MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+            If Not IO.Directory.Exists(IO.Path.GetDirectoryName(vLimit_INI)) Then IO.Directory.CreateDirectory(IO.Path.GetDirectoryName(vLimit_INI))
+            If Not IO.File.Exists(vLimit_INI) Then IO.File.Create(vLimit_INI).Close()
+            IO.File.WriteAllText(vLimit_INI, IO.File.ReadAllText(vLimit_INI, System.Text.Encoding.Unicode) + "Wildcard;", System.Text.Encoding.Unicode)
+            MsgBox("设置成功，请重启驱动拦截功能")
+        End If
+    End Sub
+
+    Private Sub 关闭通配符拦截ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 关闭通配符拦截ToolStripMenuItem.Click
+        If Not IO.Directory.Exists(IO.Path.GetDirectoryName(vLimit_INI)) Then IO.Directory.CreateDirectory(IO.Path.GetDirectoryName(vLimit_INI))
+        If Not IO.File.Exists(vLimit_INI) Then IO.File.Create(vLimit_INI).Close()
+        IO.File.WriteAllText(vLimit_INI, Replace(IO.File.ReadAllText(vLimit_INI, System.Text.Encoding.Unicode), "Wildcard;", ""), System.Text.Encoding.Unicode)
+        MsgBox("设置成功，请重启驱动拦截功能")
+    End Sub
 End Class

@@ -23,28 +23,28 @@ Partial Class Main
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim TreeNode111 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("设置游戏目录")
-        Dim TreeNode112 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("设置", New System.Windows.Forms.TreeNode() {TreeNode111})
-        Dim TreeNode113 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("禁用设置 (禁用|解禁)")
-        Dim TreeNode114 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("禁用清单 (修改清单|手动模式)")
-        Dim TreeNode115 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("常规禁用 (IFEO+ACL)", New System.Windows.Forms.TreeNode() {TreeNode113, TreeNode114})
-        Dim TreeNode116 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("拦截设置 (注册|卸载|启停)")
-        Dim TreeNode117 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("拦截清单 (修改清单)")
-        Dim TreeNode118 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("驱动拦截 (vLimit)", New System.Windows.Forms.TreeNode() {TreeNode116, TreeNode117})
-        Dim TreeNode119 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("后台模式")
-        Dim TreeNode120 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("客户端检查(可清理补丁)")
-        Dim TreeNode121 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("chkdsk磁盘检查")
-        Dim TreeNode122 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("修复文件权限")
-        Dim TreeNode123 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("精简客户端")
-        Dim TreeNode124 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Win10自动维护")
-        Dim TreeNode125 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("重置游戏配置文件")
-        Dim TreeNode126 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("卸载DNF")
-        Dim TreeNode127 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("蓝屏")
-        Dim TreeNode128 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("扩展功能", New System.Windows.Forms.TreeNode() {TreeNode119, TreeNode120, TreeNode121, TreeNode122, TreeNode123, TreeNode124, TreeNode125, TreeNode126, TreeNode127})
-        Dim TreeNode129 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("软件更新")
-        Dim TreeNode130 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("联系我们&提交建议")
-        Dim TreeNode131 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("赞助开发者")
-        Dim TreeNode132 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("其他功能(更新+联系+赞助)", New System.Windows.Forms.TreeNode() {TreeNode129, TreeNode130, TreeNode131})
+        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("设置游戏目录")
+        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("设置", New System.Windows.Forms.TreeNode() {TreeNode1})
+        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("禁用设置 (禁用|解禁)")
+        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("禁用清单 (修改清单|手动模式)")
+        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("常规禁用 (IFEO+ACL)", New System.Windows.Forms.TreeNode() {TreeNode3, TreeNode4})
+        Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("拦截设置 (注册|卸载|启停)")
+        Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("拦截清单 (修改清单)")
+        Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("驱动拦截 (vLimit)", New System.Windows.Forms.TreeNode() {TreeNode6, TreeNode7})
+        Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("后台模式")
+        Dim TreeNode10 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("客户端检查(可清理补丁)")
+        Dim TreeNode11 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("chkdsk磁盘检查")
+        Dim TreeNode12 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("修复文件权限")
+        Dim TreeNode13 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("精简客户端")
+        Dim TreeNode14 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Win10自动维护")
+        Dim TreeNode15 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("重置游戏配置文件")
+        Dim TreeNode16 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("卸载DNF")
+        Dim TreeNode17 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("蓝屏")
+        Dim TreeNode18 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("扩展功能", New System.Windows.Forms.TreeNode() {TreeNode9, TreeNode10, TreeNode11, TreeNode12, TreeNode13, TreeNode14, TreeNode15, TreeNode16, TreeNode17})
+        Dim TreeNode19 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("软件更新")
+        Dim TreeNode20 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("联系我们&提交建议")
+        Dim TreeNode21 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("赞助开发者")
+        Dim TreeNode22 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("其他功能(更新+联系+赞助)", New System.Windows.Forms.TreeNode() {TreeNode19, TreeNode20, TreeNode21})
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.Log = New System.Windows.Forms.TextBox()
         Me.gGamePath = New System.Windows.Forms.GroupBox()
@@ -89,7 +89,12 @@ Partial Class Main
         Me.添加拦截ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.删除拦截ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.修改AltitudeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.引用常规禁用的清单ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.通配符ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.开启通配符拦截ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.关闭通配符拦截ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.gDriver = New System.Windows.Forms.GroupBox()
         Me.Button10 = New System.Windows.Forms.Button()
@@ -326,51 +331,51 @@ Partial Class Main
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.tv.Location = New System.Drawing.Point(12, 12)
         Me.tv.Name = "tv"
-        TreeNode111.Name = "节点1"
-        TreeNode111.Text = "设置游戏目录"
-        TreeNode112.Name = "节点0"
-        TreeNode112.Text = "设置"
-        TreeNode113.Name = "节点3"
-        TreeNode113.Text = "禁用设置 (禁用|解禁)"
-        TreeNode114.Name = "节点4"
-        TreeNode114.Text = "禁用清单 (修改清单|手动模式)"
-        TreeNode115.Name = "节点2"
-        TreeNode115.Text = "常规禁用 (IFEO+ACL)"
-        TreeNode116.Name = "节点6"
-        TreeNode116.Text = "拦截设置 (注册|卸载|启停)"
-        TreeNode117.Name = "节点7"
-        TreeNode117.Text = "拦截清单 (修改清单)"
-        TreeNode118.Name = "节点5"
-        TreeNode118.Text = "驱动拦截 (vLimit)"
-        TreeNode119.Name = "节点9"
-        TreeNode119.Text = "后台模式"
-        TreeNode120.Name = "节点0"
-        TreeNode120.Text = "客户端检查(可清理补丁)"
-        TreeNode121.Name = "节点10"
-        TreeNode121.Text = "chkdsk磁盘检查"
-        TreeNode122.Name = "节点11"
-        TreeNode122.Text = "修复文件权限"
-        TreeNode123.Name = "节点13"
-        TreeNode123.Text = "精简客户端"
-        TreeNode124.Name = "节点14"
-        TreeNode124.Text = "Win10自动维护"
-        TreeNode125.Name = "节点16"
-        TreeNode125.Text = "重置游戏配置文件"
-        TreeNode126.Name = "节点17"
-        TreeNode126.Text = "卸载DNF"
-        TreeNode127.Name = "节点18"
-        TreeNode127.Text = "蓝屏"
-        TreeNode128.Name = "节点8"
-        TreeNode128.Text = "扩展功能"
-        TreeNode129.Name = "节点1"
-        TreeNode129.Text = "软件更新"
-        TreeNode130.Name = "节点2"
-        TreeNode130.Text = "联系我们&提交建议"
-        TreeNode131.Name = "节点3"
-        TreeNode131.Text = "赞助开发者"
-        TreeNode132.Name = "节点0"
-        TreeNode132.Text = "其他功能(更新+联系+赞助)"
-        Me.tv.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode112, TreeNode115, TreeNode118, TreeNode128, TreeNode132})
+        TreeNode1.Name = "节点1"
+        TreeNode1.Text = "设置游戏目录"
+        TreeNode2.Name = "节点0"
+        TreeNode2.Text = "设置"
+        TreeNode3.Name = "节点3"
+        TreeNode3.Text = "禁用设置 (禁用|解禁)"
+        TreeNode4.Name = "节点4"
+        TreeNode4.Text = "禁用清单 (修改清单|手动模式)"
+        TreeNode5.Name = "节点2"
+        TreeNode5.Text = "常规禁用 (IFEO+ACL)"
+        TreeNode6.Name = "节点6"
+        TreeNode6.Text = "拦截设置 (注册|卸载|启停)"
+        TreeNode7.Name = "节点7"
+        TreeNode7.Text = "拦截清单 (修改清单)"
+        TreeNode8.Name = "节点5"
+        TreeNode8.Text = "驱动拦截 (vLimit)"
+        TreeNode9.Name = "节点9"
+        TreeNode9.Text = "后台模式"
+        TreeNode10.Name = "节点0"
+        TreeNode10.Text = "客户端检查(可清理补丁)"
+        TreeNode11.Name = "节点10"
+        TreeNode11.Text = "chkdsk磁盘检查"
+        TreeNode12.Name = "节点11"
+        TreeNode12.Text = "修复文件权限"
+        TreeNode13.Name = "节点13"
+        TreeNode13.Text = "精简客户端"
+        TreeNode14.Name = "节点14"
+        TreeNode14.Text = "Win10自动维护"
+        TreeNode15.Name = "节点16"
+        TreeNode15.Text = "重置游戏配置文件"
+        TreeNode16.Name = "节点17"
+        TreeNode16.Text = "卸载DNF"
+        TreeNode17.Name = "节点18"
+        TreeNode17.Text = "蓝屏"
+        TreeNode18.Name = "节点8"
+        TreeNode18.Text = "扩展功能"
+        TreeNode19.Name = "节点1"
+        TreeNode19.Text = "软件更新"
+        TreeNode20.Name = "节点2"
+        TreeNode20.Text = "联系我们&提交建议"
+        TreeNode21.Name = "节点3"
+        TreeNode21.Text = "赞助开发者"
+        TreeNode22.Name = "节点0"
+        TreeNode22.Text = "其他功能(更新+联系+赞助)"
+        Me.tv.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode2, TreeNode5, TreeNode8, TreeNode18, TreeNode22})
         Me.tv.Size = New System.Drawing.Size(230, 449)
         Me.tv.TabIndex = 7
         '
@@ -669,9 +674,9 @@ Partial Class Main
         '
         'DLisMenu
         '
-        Me.DLisMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.添加拦截ToolStripMenuItem, Me.删除拦截ToolStripMenuItem, Me.修改AltitudeToolStripMenuItem, Me.引用常规禁用的清单ToolStripMenuItem})
+        Me.DLisMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.添加拦截ToolStripMenuItem, Me.删除拦截ToolStripMenuItem, Me.修改AltitudeToolStripMenuItem, Me.ToolStripSeparator1, Me.引用常规禁用的清单ToolStripMenuItem, Me.ToolStripSeparator2, Me.通配符ToolStripMenuItem})
         Me.DLisMenu.Name = "NListMenu"
-        Me.DLisMenu.Size = New System.Drawing.Size(185, 92)
+        Me.DLisMenu.Size = New System.Drawing.Size(185, 148)
         '
         '添加拦截ToolStripMenuItem
         '
@@ -691,11 +696,40 @@ Partial Class Main
         Me.修改AltitudeToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
         Me.修改AltitudeToolStripMenuItem.Text = "修改Altitude"
         '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(181, 6)
+        '
         '引用常规禁用的清单ToolStripMenuItem
         '
         Me.引用常规禁用的清单ToolStripMenuItem.Name = "引用常规禁用的清单ToolStripMenuItem"
         Me.引用常规禁用的清单ToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
         Me.引用常规禁用的清单ToolStripMenuItem.Text = "引用常规禁用的清单"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(181, 6)
+        '
+        '通配符ToolStripMenuItem
+        '
+        Me.通配符ToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.开启通配符拦截ToolStripMenuItem, Me.关闭通配符拦截ToolStripMenuItem})
+        Me.通配符ToolStripMenuItem.Name = "通配符ToolStripMenuItem"
+        Me.通配符ToolStripMenuItem.Size = New System.Drawing.Size(184, 22)
+        Me.通配符ToolStripMenuItem.Text = "通配符"
+        '
+        '开启通配符拦截ToolStripMenuItem
+        '
+        Me.开启通配符拦截ToolStripMenuItem.Name = "开启通配符拦截ToolStripMenuItem"
+        Me.开启通配符拦截ToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.开启通配符拦截ToolStripMenuItem.Text = "开启通配符拦截"
+        '
+        '关闭通配符拦截ToolStripMenuItem
+        '
+        Me.关闭通配符拦截ToolStripMenuItem.Name = "关闭通配符拦截ToolStripMenuItem"
+        Me.关闭通配符拦截ToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.关闭通配符拦截ToolStripMenuItem.Text = "关闭通配符拦截"
         '
         'Label5
         '
@@ -2034,9 +2068,10 @@ Partial Class Main
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(792, 473)
+        Me.Controls.Add(Me.gDList)
+        Me.Controls.Add(Me.gDriver)
         Me.Controls.Add(Me.gExtra_filecheck)
         Me.Controls.Add(Me.gHello)
-        Me.Controls.Add(Me.gDriver)
         Me.Controls.Add(Me.gExtra_trim)
         Me.Controls.Add(Me.gGamePath)
         Me.Controls.Add(Me.gOther_Contact)
@@ -2046,7 +2081,6 @@ Partial Class Main
         Me.Controls.Add(Me.gOther_Donate)
         Me.Controls.Add(Me.gNormal)
         Me.Controls.Add(Me.gOther_Update)
-        Me.Controls.Add(Me.gDList)
         Me.Controls.Add(Me.gNormalInfo)
         Me.Controls.Add(Me.gExtraInfo)
         Me.Controls.Add(Me.gNList)
@@ -2276,4 +2310,9 @@ Partial Class Main
     Friend WithEvents Column13 As DataGridViewTextBoxColumn
     Friend WithEvents Button31 As Button
     Friend WithEvents Button32 As Button
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
+    Friend WithEvents 通配符ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents 开启通配符拦截ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents 关闭通配符拦截ToolStripMenuItem As ToolStripMenuItem
 End Class

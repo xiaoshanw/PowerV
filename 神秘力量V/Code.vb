@@ -6,6 +6,7 @@
     Public INI As String = CONFIG + "\config.ini"
     Public IFEO_PATH As String = CONFIG + "\VoCytDefenderEx.exe"
     Public vLimit_DAT As String = "C:\Users\Public\Documents\vLimit\vLimit.dat"
+    Public vLimit_INI As String = "C:\Users\Public\Documents\vLimit\vLimit.ini"
     Public vLimit_SYS As String = "C:\Users\Public\Documents\vLimit\vLimit.sys"
     Public SGuard_Path As String = "C:\Program Files\AntiCheatExpert\SGuard"
     Public LastError As String
