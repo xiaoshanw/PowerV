@@ -98,7 +98,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  查找类似 这是一份使用说明，快速上手请阅读：
+        '''  查找类似 这是一份使用说明，以便快速上手本软件：
         '''①左侧模块为功能清单，点击即可进入
         '''②右侧模块为对应功能操作面板
         '''③右下模块为功能输出日志
@@ -117,18 +117,17 @@ Namespace My.Resources
         '''②驱动拦截-拦截设置-注册驱动服务-启动驱动服务
         '''
         '''更新日志：
-        '''2021-xx-xx Ver:0.1.2.0
-        '''.新增客户端检查功能，可检查游戏完整性，删除多余补丁
-        '''.优化后台模式，默认禁用SGuard限制
-        '''.修改加群描述
+        '''2022-07-06 Ver:0.1.2.2
+        '''1.调整默认拦截清单，新增对pandora.dll（110版本装备推荐功能）的拦截
+        '''2.优化驱动拦截的失败提示
+        '''3.调整祝福语
         '''
-        '''2021-03-04 Ver:0.1.1.2
-        '''1.修复后台模式开启时顿卡的BUG
-        '''2.修复精简客户端偶尔会崩溃的BUG
+        '''2022-01-19 Ver:0.1.2.1
+        '''1.驱动拦截新增通配符功能，可在拦截规则中使用通配符
         '''
-        '''2021-03-02 Ver:0.1.1.1
-        '''1.修复开启后台模式后界面偶尔会顿卡的BUG
-        '''2.修复后台模式中，限制SGuard方案模式A中关 [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''2021-07-20 Ver:0.1.2.0
+        '''1.新增客户端检查功能，可检查游戏完整性，删除多余补丁
+        '''2.优化后台模式，默认禁用SGuard限制 [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Friend ReadOnly Property Hello() As String
             Get
@@ -162,6 +161,16 @@ Namespace My.Resources
         Friend ReadOnly Property qun2() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("qun2", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property qun3() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("qun3", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

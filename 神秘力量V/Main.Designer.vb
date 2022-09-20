@@ -185,14 +185,25 @@ Partial Class Main
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Button27 = New System.Windows.Forms.Button()
         Me.gOther_Contact = New System.Windows.Forms.GroupBox()
-        Me.TextBox14 = New System.Windows.Forms.TextBox()
-        Me.Label29 = New System.Windows.Forms.Label()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.TextBox18 = New System.Windows.Forms.TextBox()
+        Me.PictureBox5 = New System.Windows.Forms.PictureBox()
+        Me.Button33 = New System.Windows.Forms.Button()
+        Me.Label33 = New System.Windows.Forms.Label()
+        Me.TextBox19 = New System.Windows.Forms.TextBox()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.TextBox17 = New System.Windows.Forms.TextBox()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.Button26 = New System.Windows.Forms.Button()
-        Me.TextBox13 = New System.Windows.Forms.TextBox()
         Me.Label27 = New System.Windows.Forms.Label()
+        Me.TextBox13 = New System.Windows.Forms.TextBox()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.TextBox15 = New System.Windows.Forms.TextBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Button25 = New System.Windows.Forms.Button()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.TextBox14 = New System.Windows.Forms.TextBox()
         Me.gOther_Donate = New System.Windows.Forms.GroupBox()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.Label28 = New System.Windows.Forms.Label()
@@ -234,7 +245,12 @@ Partial Class Main
         Me.gExtra_Background.SuspendLayout()
         Me.gOther_Update.SuspendLayout()
         Me.gOther_Contact.SuspendLayout()
+        Me.TabControl1.SuspendLayout()
+        Me.TabPage1.SuspendLayout()
+        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage2.SuspendLayout()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage3.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.gOther_Donate.SuspendLayout()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -676,7 +692,7 @@ Partial Class Main
         '
         Me.DLisMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.添加拦截ToolStripMenuItem, Me.删除拦截ToolStripMenuItem, Me.修改AltitudeToolStripMenuItem, Me.ToolStripSeparator1, Me.引用常规禁用的清单ToolStripMenuItem, Me.ToolStripSeparator2, Me.通配符ToolStripMenuItem})
         Me.DLisMenu.Name = "NListMenu"
-        Me.DLisMenu.Size = New System.Drawing.Size(185, 148)
+        Me.DLisMenu.Size = New System.Drawing.Size(185, 126)
         '
         '添加拦截ToolStripMenuItem
         '
@@ -1557,6 +1573,8 @@ Partial Class Main
         '
         'Button19
         '
+        Me.Button19.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Button19.Location = New System.Drawing.Point(6, 267)
         Me.Button19.Name = "Button19"
         Me.Button19.Size = New System.Drawing.Size(520, 23)
@@ -1763,14 +1781,7 @@ Partial Class Main
         Me.gOther_Contact.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.gOther_Contact.Controls.Add(Me.TextBox14)
-        Me.gOther_Contact.Controls.Add(Me.Label29)
-        Me.gOther_Contact.Controls.Add(Me.PictureBox4)
-        Me.gOther_Contact.Controls.Add(Me.Button26)
-        Me.gOther_Contact.Controls.Add(Me.TextBox13)
-        Me.gOther_Contact.Controls.Add(Me.Label27)
-        Me.gOther_Contact.Controls.Add(Me.PictureBox1)
-        Me.gOther_Contact.Controls.Add(Me.Button25)
+        Me.gOther_Contact.Controls.Add(Me.TabControl1)
         Me.gOther_Contact.Location = New System.Drawing.Point(248, 12)
         Me.gOther_Contact.Name = "gOther_Contact"
         Me.gOther_Contact.Size = New System.Drawing.Size(532, 362)
@@ -1778,30 +1789,120 @@ Partial Class Main
         Me.gOther_Contact.TabStop = False
         Me.gOther_Contact.Text = "联系我们"
         '
-        'TextBox14
+        'TabControl1
         '
-        Me.TextBox14.Location = New System.Drawing.Point(308, 278)
-        Me.TextBox14.Name = "TextBox14"
-        Me.TextBox14.ReadOnly = True
-        Me.TextBox14.Size = New System.Drawing.Size(191, 21)
-        Me.TextBox14.TabIndex = 16
-        Me.TextBox14.Text = "679078251"
+        Me.TabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.TabPage3)
+        Me.TabControl1.Location = New System.Drawing.Point(6, 17)
+        Me.TabControl1.Name = "TabControl1"
+        Me.TabControl1.SelectedIndex = 0
+        Me.TabControl1.Size = New System.Drawing.Size(520, 339)
+        Me.TabControl1.TabIndex = 17
         '
-        'Label29
+        'TabPage1
         '
-        Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(261, 283)
-        Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(41, 12)
-        Me.Label29.TabIndex = 15
-        Me.Label29.Text = "群号："
+        Me.TabPage1.Controls.Add(Me.TextBox18)
+        Me.TabPage1.Controls.Add(Me.PictureBox5)
+        Me.TabPage1.Controls.Add(Me.Button33)
+        Me.TabPage1.Controls.Add(Me.Label33)
+        Me.TabPage1.Controls.Add(Me.TextBox19)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Name = "TabPage1"
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage1.Size = New System.Drawing.Size(512, 313)
+        Me.TabPage1.TabIndex = 0
+        Me.TabPage1.Text = "ProjectV_Ⅲ"
+        Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'TextBox18
+        '
+        Me.TextBox18.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox18.Location = New System.Drawing.Point(250, 8)
+        Me.TextBox18.Multiline = True
+        Me.TextBox18.Name = "TextBox18"
+        Me.TextBox18.ReadOnly = True
+        Me.TextBox18.Size = New System.Drawing.Size(246, 299)
+        Me.TextBox18.TabIndex = 23
+        Me.TextBox18.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Welcome to Project-V" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.TextBox18.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'PictureBox5
+        '
+        Me.PictureBox5.Image = Global.神秘力量V.My.Resources.Resources.qun3
+        Me.PictureBox5.Location = New System.Drawing.Point(6, 10)
+        Me.PictureBox5.Name = "PictureBox5"
+        Me.PictureBox5.Size = New System.Drawing.Size(238, 237)
+        Me.PictureBox5.TabIndex = 22
+        Me.PictureBox5.TabStop = False
+        '
+        'Button33
+        '
+        Me.Button33.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button33.Location = New System.Drawing.Point(6, 282)
+        Me.Button33.Name = "Button33"
+        Me.Button33.Size = New System.Drawing.Size(238, 23)
+        Me.Button33.TabIndex = 21
+        Me.Button33.Text = "申请进行交♂流"
+        Me.Button33.UseVisualStyleBackColor = True
+        '
+        'Label33
+        '
+        Me.Label33.AutoSize = True
+        Me.Label33.Location = New System.Drawing.Point(14, 259)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(41, 12)
+        Me.Label33.TabIndex = 19
+        Me.Label33.Text = "群号："
+        '
+        'TextBox19
+        '
+        Me.TextBox19.Location = New System.Drawing.Point(62, 255)
+        Me.TextBox19.Name = "TextBox19"
+        Me.TextBox19.ReadOnly = True
+        Me.TextBox19.Size = New System.Drawing.Size(182, 21)
+        Me.TextBox19.TabIndex = 20
+        Me.TextBox19.Text = "870116893"
+        '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.TextBox17)
+        Me.TabPage2.Controls.Add(Me.PictureBox4)
+        Me.TabPage2.Controls.Add(Me.Button26)
+        Me.TabPage2.Controls.Add(Me.Label27)
+        Me.TabPage2.Controls.Add(Me.TextBox13)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(512, 313)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "Project-V"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'TextBox17
+        '
+        Me.TextBox17.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox17.Location = New System.Drawing.Point(250, 8)
+        Me.TextBox17.Multiline = True
+        Me.TextBox17.Name = "TextBox17"
+        Me.TextBox17.ReadOnly = True
+        Me.TextBox17.Size = New System.Drawing.Size(246, 299)
+        Me.TextBox17.TabIndex = 18
+        Me.TextBox17.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "R.I.P" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "2020.01 ~ 2022.09"
+        Me.TextBox17.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'PictureBox4
         '
         Me.PictureBox4.Image = Global.神秘力量V.My.Resources.Resources.qun2
-        Me.PictureBox4.Location = New System.Drawing.Point(266, 20)
+        Me.PictureBox4.Location = New System.Drawing.Point(6, 10)
         Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(238, 250)
+        Me.PictureBox4.Size = New System.Drawing.Size(238, 237)
         Me.PictureBox4.TabIndex = 14
         Me.PictureBox4.TabStop = False
         '
@@ -1809,48 +1910,94 @@ Partial Class Main
         '
         Me.Button26.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Button26.Location = New System.Drawing.Point(260, 306)
+        Me.Button26.Location = New System.Drawing.Point(6, 282)
         Me.Button26.Name = "Button26"
-        Me.Button26.Size = New System.Drawing.Size(266, 23)
+        Me.Button26.Size = New System.Drawing.Size(238, 23)
         Me.Button26.TabIndex = 13
-        Me.Button26.Text = "点击加入交♂流♂群"
+        Me.Button26.Text = "申请进行交♂流"
         Me.Button26.UseVisualStyleBackColor = True
-        '
-        'TextBox13
-        '
-        Me.TextBox13.Location = New System.Drawing.Point(61, 276)
-        Me.TextBox13.Name = "TextBox13"
-        Me.TextBox13.ReadOnly = True
-        Me.TextBox13.Size = New System.Drawing.Size(191, 21)
-        Me.TextBox13.TabIndex = 8
-        Me.TextBox13.Text = "421483534"
         '
         'Label27
         '
         Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(14, 281)
+        Me.Label27.Location = New System.Drawing.Point(14, 259)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(41, 12)
         Me.Label27.TabIndex = 7
         Me.Label27.Text = "群号："
         '
+        'TextBox13
+        '
+        Me.TextBox13.Location = New System.Drawing.Point(62, 255)
+        Me.TextBox13.Name = "TextBox13"
+        Me.TextBox13.ReadOnly = True
+        Me.TextBox13.Size = New System.Drawing.Size(182, 21)
+        Me.TextBox13.TabIndex = 8
+        Me.TextBox13.Text = "679078251"
+        '
+        'TabPage3
+        '
+        Me.TabPage3.Controls.Add(Me.TextBox15)
+        Me.TabPage3.Controls.Add(Me.PictureBox1)
+        Me.TabPage3.Controls.Add(Me.Button25)
+        Me.TabPage3.Controls.Add(Me.Label29)
+        Me.TabPage3.Controls.Add(Me.TextBox14)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage3.Size = New System.Drawing.Size(512, 313)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "全家桶交流群"
+        Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'TextBox15
+        '
+        Me.TextBox15.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox15.Location = New System.Drawing.Point(250, 8)
+        Me.TextBox15.Multiline = True
+        Me.TextBox15.Name = "TextBox15"
+        Me.TextBox15.ReadOnly = True
+        Me.TextBox15.Size = New System.Drawing.Size(246, 299)
+        Me.TextBox15.TabIndex = 17
+        Me.TextBox15.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "R.I.P" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "2018.12 ~ 2020.01"
+        Me.TextBox15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'PictureBox1
         '
         Me.PictureBox1.Image = Global.神秘力量V.My.Resources.Resources.qun1
-        Me.PictureBox1.Location = New System.Drawing.Point(14, 20)
+        Me.PictureBox1.Location = New System.Drawing.Point(6, 10)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(238, 250)
+        Me.PictureBox1.Size = New System.Drawing.Size(238, 237)
         Me.PictureBox1.TabIndex = 6
         Me.PictureBox1.TabStop = False
         '
         'Button25
         '
-        Me.Button25.Location = New System.Drawing.Point(6, 306)
+        Me.Button25.Location = New System.Drawing.Point(6, 282)
         Me.Button25.Name = "Button25"
-        Me.Button25.Size = New System.Drawing.Size(246, 23)
+        Me.Button25.Size = New System.Drawing.Size(238, 23)
         Me.Button25.TabIndex = 5
-        Me.Button25.Text = "点击加入交流群(车速过快不定期死亡)"
+        Me.Button25.Text = "申请进行交♂流"
         Me.Button25.UseVisualStyleBackColor = True
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(14, 259)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(41, 12)
+        Me.Label29.TabIndex = 15
+        Me.Label29.Text = "群号："
+        '
+        'TextBox14
+        '
+        Me.TextBox14.Location = New System.Drawing.Point(62, 255)
+        Me.TextBox14.Name = "TextBox14"
+        Me.TextBox14.ReadOnly = True
+        Me.TextBox14.Size = New System.Drawing.Size(182, 21)
+        Me.TextBox14.TabIndex = 16
+        Me.TextBox14.Text = "421483534"
         '
         'gOther_Donate
         '
@@ -1885,7 +2032,7 @@ Partial Class Main
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(197, 48)
         Me.Label28.TabIndex = 7
-        Me.Label28.Text = "说明：" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "①一块两块不嫌少，百八十万不嫌多" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "②开心♂就好" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "③我替黄旭东祝你这辈子都不出神话"
+        Me.Label28.Text = "说明：" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "①一块两块不嫌少，百八十万不嫌多" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "②开心♂就好" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "③加什么百什么利"
         '
         'PictureBox2
         '
@@ -2068,22 +2215,22 @@ Partial Class Main
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(792, 473)
-        Me.Controls.Add(Me.gDList)
-        Me.Controls.Add(Me.gDriver)
-        Me.Controls.Add(Me.gExtra_filecheck)
-        Me.Controls.Add(Me.gHello)
-        Me.Controls.Add(Me.gExtra_trim)
-        Me.Controls.Add(Me.gGamePath)
         Me.Controls.Add(Me.gOther_Contact)
         Me.Controls.Add(Me.gExtra_Background)
+        Me.Controls.Add(Me.gHello)
+        Me.Controls.Add(Me.gOther_Donate)
+        Me.Controls.Add(Me.gDriver)
+        Me.Controls.Add(Me.gNList)
+        Me.Controls.Add(Me.gDList)
+        Me.Controls.Add(Me.gExtra_filecheck)
+        Me.Controls.Add(Me.gExtra_trim)
+        Me.Controls.Add(Me.gGamePath)
         Me.Controls.Add(Me.gExtra_DNFCFG)
         Me.Controls.Add(Me.gDriverInfo)
-        Me.Controls.Add(Me.gOther_Donate)
         Me.Controls.Add(Me.gNormal)
         Me.Controls.Add(Me.gOther_Update)
         Me.Controls.Add(Me.gNormalInfo)
         Me.Controls.Add(Me.gExtraInfo)
-        Me.Controls.Add(Me.gNList)
         Me.Controls.Add(Me.gExtra_BSOD)
         Me.Controls.Add(Me.gExtra_Purge)
         Me.Controls.Add(Me.gExtra_Win10MTC)
@@ -2133,8 +2280,15 @@ Partial Class Main
         Me.gOther_Update.ResumeLayout(False)
         Me.gOther_Update.PerformLayout()
         Me.gOther_Contact.ResumeLayout(False)
-        Me.gOther_Contact.PerformLayout()
+        Me.TabControl1.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
+        Me.TabPage1.PerformLayout()
+        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage2.ResumeLayout(False)
+        Me.TabPage2.PerformLayout()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage3.ResumeLayout(False)
+        Me.TabPage3.PerformLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.gOther_Donate.ResumeLayout(False)
         Me.gOther_Donate.PerformLayout()
@@ -2315,4 +2469,15 @@ Partial Class Main
     Friend WithEvents 通配符ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents 开启通配符拦截ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents 关闭通配符拦截ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TabControl1 As TabControl
+    Friend WithEvents TabPage1 As TabPage
+    Friend WithEvents TextBox18 As TextBox
+    Friend WithEvents PictureBox5 As PictureBox
+    Friend WithEvents Button33 As Button
+    Friend WithEvents Label33 As Label
+    Friend WithEvents TextBox19 As TextBox
+    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents TextBox17 As TextBox
+    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents TextBox15 As TextBox
 End Class

@@ -294,6 +294,7 @@
 
     Private Sub NList_Fresh(Optional inIsPrint As Boolean = True)
         With NList
+
             .Rows.Clear()
             Dim tStr = ReadINI(INI, "Normal List", "List", "")
             tStr = Base64_to_String(tStr)
@@ -301,7 +302,25 @@
                 tStr = My.Resources.default_NList
                 WriteINI(INI, "Normal List", "List", String_to_Base64(tStr))
             End If
+            Dim nlistVersion = vCINT(Replace(ReadINI(INI, "Normal List", "Version", ""), ".", ""))
+            Dim LastVersion = vCINT(Replace(Get_Version, ".", ""))
             Dim aStr() As String
+            If LastVersion > nlistVersion Then
+                If My.Resources.default_NList.EndsWith("|UPDATE") Then
+                    If MsgBox("检测到默认禁用/拦截清单有更新，是否更新？", vbYesNo) = MsgBoxResult.Yes Then
+                        For Each vline As String In Split(My.Resources.default_NList, vbCrLf)
+                            aStr = Split(vline, "|")
+                            If aStr.Length > 3 And vline.EndsWith("|UPDATE") Then
+                                tStr += vbCrLf + Replace(vline, "|UPDATE", "")
+                            End If
+                        Next
+                        WriteINI(INI, "Normal List", "Version", Get_Version)
+                        WriteINI(INI, "Normal List", "List", String_to_Base64(tStr))
+                    End If
+                End If
+            End If
+
+
             Dim tListBox = New ListBox
             Dim isIFEO, isACL As Boolean
             Dim tString As String
@@ -573,6 +592,7 @@
             Next
         End With
         WriteINI(INI, "Normal List", "List", String_to_Base64(oString))
+        WriteINI(INI, "Normal List", "Version", Get_Version)
     End Sub
 
     Private Sub 修改插件ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles 修改插件ToolStripMenuItem.Click
@@ -856,7 +876,7 @@
 
 
                 Catch ex As Exception
-                    printl(ex.Message + "是否未设置拦截清单？")
+                    printl(ex.Message + "请检查驱动拦截清单是否正确设置")
                 End Try
             Else
                 printl("驱动已运行")
@@ -1700,5 +1720,9 @@
         If Not IO.File.Exists(vLimit_INI) Then IO.File.Create(vLimit_INI).Close()
         IO.File.WriteAllText(vLimit_INI, Replace(IO.File.ReadAllText(vLimit_INI, System.Text.Encoding.Unicode), "Wildcard;", ""), System.Text.Encoding.Unicode)
         MsgBox("设置成功，请重启驱动拦截功能")
+    End Sub
+
+    Private Sub Button33_Click(sender As Object, e As EventArgs) Handles Button33.Click
+        Diagnostics.Process.Start("https://jq.qq.com/?_wv=1027&k=RNVZsqLQ")
     End Sub
 End Class

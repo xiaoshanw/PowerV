@@ -62,7 +62,7 @@
             Return ""
         End Try
     End Function
-    Public Function vCINT(ByVal inObject As Object)
+    Public Function vCINT(ByVal inObject As Object) As Integer
         Try
             If IsNumeric(inObject) Then Return CInt(inObject)
         Catch ex As Exception

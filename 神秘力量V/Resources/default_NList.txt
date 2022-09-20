@@ -10,3 +10,4 @@ DNFADApp.dll|2|%DNF%\start\Cross\Apps\DNFAD\DNFADApp.dll
 GameDataPlatformClient.dll|2|%DNF%\start\Cross\Apps\DNFAD\GameDataPlatformClient.dll
 res.vfs|2|%DNF%\start\Cross\Apps\DNFAD\res.vfs
 DNFTips.dll|2|%DNF%\start\Cross\Apps\DNFTips\DNFTips.dll
+pandora.dll|2|%DNF%\Pandora\libs\x64\pandora.dll|UPDATE
