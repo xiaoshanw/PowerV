@@ -73,7 +73,7 @@
             tMsg += vbCrLf + "文件操作：操作必要的文件，如创建配置文件、ACL禁用、客户端检查/精简、磁盘检查等"
             tMsg += vbCrLf + "注册表操作：IFEO拦截、驱动拦截、修改Win10自动维护策略等"
             tMsg += vbCrLf + "驱动操作：驱动拦截"
-            tMsg += vbCrLf + "证书操作：驱动拦截"
+            'tMsg += vbCrLf + "证书操作：驱动拦截"
             tMsg += vbCrLf + "网络访问：自动更新" + vbCrLf
             tMsg += vbCrLf + "如对上述权限有疑问或不同意上述操作，请关闭本程序"
             tMsg += vbCrLf + "本警告仅在首次使用本软件时提示"
@@ -114,7 +114,7 @@
         Try
             If IO.File.Exists(vLimit_SYS) Then
                 Dim tByte = IO.File.ReadAllBytes(vLimit_SYS)
-                If Not Enumerable.SequenceEqual(tByte, My.Resources.vLimit) Then
+                If Not Enumerable.SequenceEqual(tByte, GetvLilitBytes()) Then
                     If MsgBox("检测到vLimit驱动拦截更新，是否更新驱动文件", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
                         Try
                             For Each vline In ServiceProcess.ServiceController.GetDevices
@@ -126,7 +126,7 @@
                                 End If
                             Next
                             IO.File.Delete(vLimit_SYS)
-                            IO.File.WriteAllBytes(vLimit_SYS, My.Resources.vLimit)
+                            IO.File.WriteAllBytes(vLimit_SYS, GetvLilitBytes())
                             MsgBox("更新成功" + vbCrLf + "若当前系统为Windows 10(20H2)或更高，需要卸载驱动并重新注册")
                         Catch ex2 As Exception
                             MsgBox("更新失败[" + ex2.Message + "]")
@@ -819,7 +819,7 @@
         If tDSStatus.Text = "未注册" Then
             If Not IO.File.Exists(tDPath.Text) Then
                 printf("释放驱动文件")
-                IO.File.WriteAllBytes(tDPath.Text, My.Resources.vLimit)
+                IO.File.WriteAllBytes(tDPath.Text, GetvLilitBytes())
                 printl("Success")
             End If
             Try
@@ -828,26 +828,27 @@
                 CloseServiceHandle(hSCManager)
                 printl("注册服务成功")
                 '20210719/新增证书
-                Dim isCrt = False
-                Try
+                '20230105/删除该功能
+                'Dim isCrt = False
+                'Try
 
-                    '
-                    Dim CAStore = New System.Security.Cryptography.X509Certificates.X509Store(Security.Cryptography.X509Certificates.StoreName.Root, Security.Cryptography.X509Certificates.StoreLocation.LocalMachine)
-                    CAStore.Open(Security.Cryptography.X509Certificates.OpenFlags.ReadWrite)
-                    For Each tCrt In CAStore.Certificates
-                        If tCrt.SubjectName.Name.Contains("JemmyLoveJenny EV Root CA") Then
-                            isCrt = True
-                            Exit For
-                        End If
-                    Next
-                    If Not isCrt Then
-                        Dim CAcrt = New System.Security.Cryptography.X509Certificates.X509Certificate2(My.Resources.EVRootCA, "")
-                        CAStore.Add(CAcrt)
-                    End If
-                    CAStore.Close()
-                Catch ex As Exception
+                '    '
+                '    Dim CAStore = New System.Security.Cryptography.X509Certificates.X509Store(Security.Cryptography.X509Certificates.StoreName.Root, Security.Cryptography.X509Certificates.StoreLocation.LocalMachine)
+                '    CAStore.Open(Security.Cryptography.X509Certificates.OpenFlags.ReadWrite)
+                '    For Each tCrt In CAStore.Certificates
+                '        If tCrt.SubjectName.Name.Contains("JemmyLoveJenny EV Root CA") Then
+                '            isCrt = True
+                '            Exit For
+                '        End If
+                '    Next
+                '    If Not isCrt Then
+                '        Dim CAcrt = New System.Security.Cryptography.X509Certificates.X509Certificate2(My.Resources.EVRootCA, "")
+                '        CAStore.Add(CAcrt)
+                '    End If
+                '    CAStore.Close()
+                'Catch ex As Exception
 
-                End Try
+                'End Try
 
 
             Catch ex As Exception
@@ -876,6 +877,19 @@
 
 
                 Catch ex As Exception
+                    Dim tProcess = New Process
+                    With tProcess.StartInfo
+                        .UseShellExecute = False
+                        .FileName = "sc"
+                        .Arguments = " start vlimit"
+                        .RedirectStandardInput = True
+                        .RedirectStandardOutput = True
+                        .RedirectStandardError = True
+                        .CreateNoWindow = True
+                    End With
+                    tProcess.Start()
+                    tProcess.WaitForExit()
+                    MsgBox(tProcess.StandardOutput.ReadToEnd)
                     printl(ex.Message + "请检查驱动拦截清单是否正确设置")
                 End Try
             Else
@@ -917,16 +931,17 @@
         End If
 
         '20210719/新增证书
-        Dim CAStore = New System.Security.Cryptography.X509Certificates.X509Store(Security.Cryptography.X509Certificates.StoreName.Root, Security.Cryptography.X509Certificates.StoreLocation.LocalMachine)
-        CAStore.Open(Security.Cryptography.X509Certificates.OpenFlags.ReadWrite)
-        For Each tCrt In CAStore.Certificates
-            If tCrt.SubjectName.Name.Contains("JemmyLoveJenny EV Root CA") Then
-                Dim CAcrt = New System.Security.Cryptography.X509Certificates.X509Certificate2(My.Resources.EVRootCA, "")
-                CAStore.Remove(CAcrt)
-                Exit For
-            End If
-        Next
-        CAStore.Close()
+        '20230105/删除
+        'Dim CAStore = New System.Security.Cryptography.X509Certificates.X509Store(Security.Cryptography.X509Certificates.StoreName.Root, Security.Cryptography.X509Certificates.StoreLocation.LocalMachine)
+        'CAStore.Open(Security.Cryptography.X509Certificates.OpenFlags.ReadWrite)
+        'For Each tCrt In CAStore.Certificates
+        '    If tCrt.SubjectName.Name.Contains("JemmyLoveJenny EV Root CA") Then
+        '        Dim CAcrt = New System.Security.Cryptography.X509Certificates.X509Certificate2(My.Resources.EVRootCA, "")
+        '        CAStore.Remove(CAcrt)
+        '        Exit For
+        '    End If
+        'Next
+        'CAStore.Close()
 
         If tDSStatus.Text = "正常" Then
             Dim str = IO.Path.GetTempFileName
@@ -1224,22 +1239,22 @@
         End If
         Application.DoEvents()
         Me.Visible = Background_Timer.Enabled
-        '预处理
-        Select Case Background_Timer.Enabled
-            Case True
-                'STOP
-                SGuard_Control(0)
-            Case False
-                'START
-                If CheckBox8.Checked And ComboBox1.Text.Contains("A") And Get_Runner.ToLower <> "system" Then
-                    Background_Icon.Visible = False
-                    Application.DoEvents()
-                    System_Invoker(Me.GetType.Assembly.Location)
-                End If
-                If CheckBox8.Checked And ComboBox1.Text.Contains("B") Then
-                    SGuard_Control(2)
-                End If
-        End Select
+        '预处理   '202301015
+        'Select Case Background_Timer.Enabled
+        '    Case True
+        '        Stop
+        '        SGuard_Control(0) '202301015
+        '    Case False
+        '        START
+        '        If CheckBox8.Checked And ComboBox1.Text.Contains("A") And Get_Runner.ToLower <> "system" Then
+        '            Background_Icon.Visible = False
+        '            Application.DoEvents()
+        '            System_Invoker(Me.GetType.Assembly.Location)
+        '        End If
+        '        If CheckBox8.Checked And ComboBox1.Text.Contains("B") Then
+        '            SGuard_Control(2)  '202301015
+        '        End If
+        'End Select
         '启动计时器
         Background_Timer.Enabled = Not Background_Timer.Enabled
         '重置界面
@@ -1256,20 +1271,20 @@
     Private Sub BackGround_Timer_Tick(sender As Object, e As EventArgs) Handles Background_Timer.Tick
         'printl(Now.ToString)
         Try
-            Try
-                If Last_DNF_PID <> 0 Then
-                    Dim tProcess = Process.GetProcessById(Last_DNF_PID)
-                    If tProcess Is Nothing Then
-                        SGuard_Control(0)
-                    Else
-                        If tProcess.HasExited Then
-                            SGuard_Control(0)
-                        End If
-                    End If
-                End If
-            Catch ex2 As Exception
-                printl("后台模式[“ + ex2.Message + ”]")
-            End Try
+            'Try  '202301015
+            '    If Last_DNF_PID <> 0 Then
+            '        Dim tProcess = Process.GetProcessById(Last_DNF_PID)
+            '        If tProcess Is Nothing Then
+            '            'SGuard_Control(0)  '202301015
+            '        Else
+            '            If tProcess.HasExited Then
+            '                'SGuard_Control(0)  '202301015
+            '            End If
+            '        End If
+            '    End If
+            'Catch ex2 As Exception
+            '    printl("后台模式[“ + ex2.Message + ”]")
+            'End Try
 
             Dim tProcesses = Process.GetProcesses
             For Each sProcess In tProcesses
@@ -1299,19 +1314,19 @@
                                             If Background_Icon.Visible Then Icon_Show(Background_Icon, 2000, "神秘力量V", "关闭TGuardSvc服务", ToolTipIcon.Info)
                                         End If
                                     'Case "sguard64", "sguardsvc64"
-                                    Case "sguard64"
-                                        'If CheckBox8.Checked Then
-                                        '    Shell("sc stop ""AntiCheatExpert Service""", AppWinStyle.Hide)
-                                        '    printl("关闭SGuard服务")
-                                        '    If Background_Icon.Visible Then Icon_Show(Background_Icon, 2000, "神秘力量V", "关闭SGuard服务", ToolTipIcon.Info)
-                                        'End If
-                                        If CheckBox8.Checked Then
-                                            If ComboBox1.Text.Contains("A") Then
-                                                SGuard_Control(1)
-                                                'ElseIf ComboBox1.Text.Contains("B") Then
-                                                '    SGuard_Control(2)
-                                            End If
-                                        End If
+                                    'Case "sguard64"  '202301015
+                                    'If CheckBox8.Checked Then
+                                    '    Shell("sc stop ""AntiCheatExpert Service""", AppWinStyle.Hide)
+                                    '    printl("关闭SGuard服务")
+                                    '    If Background_Icon.Visible Then Icon_Show(Background_Icon, 2000, "神秘力量V", "关闭SGuard服务", ToolTipIcon.Info)
+                                    'End If
+                                    'If CheckBox8.Checked Then  '202301015
+                                    '    If ComboBox1.Text.Contains("A") Then
+                                    '        SGuard_Control(1)
+                                    '        'ElseIf ComboBox1.Text.Contains("B") Then
+                                    '        '    SGuard_Control(2)
+                                    '    End If
+                                    'End If              '202301015
                                     Case "tesservice"
                                         If CheckBox7.Checked Then
                                             Shell("sc stop TesService", AppWinStyle.Hide)
@@ -1415,105 +1430,105 @@
         printl("引用列表成功")
     End Sub
 
-    Private Sub SGuard_Control(ByVal __in_mode As Integer)
-        '0还原
-        '1提权
-        '2替换
-        Try
-            Dim tString As String
-            Select Case __in_mode
-                Case 0
-                    'printl("检测权限[" + Get_Runner() + "]")
-                    If Get_Runner.ToLower = "system" Then
-                        For Each sProcess In Process.GetProcesses
-                            Select Case sProcess.ProcessName.ToLower
-                                Case "sguard64", "sguardsvc64"
-                                    NtResumeProcess(sProcess.Handle)
-                            End Select
-                        Next
-                    End If
-                Case 1
-                    'Shell("sc start ""AntiCheatExpert Service""", AppWinStyle.Hide)
-                    Dim sg64, sgsvc64 As IntPtr
-                    For i = 1 To 10
-                        sg64 = 0
-                        sgsvc64 = 0
-                        For Each sProcess In Process.GetProcesses
-                            Select Case sProcess.ProcessName.ToLower
-                                Case "sguard64"
-                                    sg64 = sProcess.Handle
-                                Case "sguardsvc64"
-                                    sgsvc64 = sProcess.Handle
-                            End Select
-                            If sg64 <> 0 And sgsvc64 <> 0 Then
-                                printl("NtSuspendProcess(sguard64)=" + NtSuspendProcess(sg64).ToString)
-                                printl("NtSuspendProcess(sguardsvc64)=" + NtSuspendProcess(sgsvc64).ToString)
-                                Exit Sub
-                            End If
-                        Next
+    'Private Sub SGuard_Control(ByVal __in_mode As Integer)
+    '    '0还原
+    '    '1提权
+    '    '2替换
+    '    Try
+    '        Dim tString As String
+    '        Select Case __in_mode
+    '            Case 0
+    '                'printl("检测权限[" + Get_Runner() + "]")
+    '                If Get_Runner.ToLower = "system" Then
+    '                    For Each sProcess In Process.GetProcesses
+    '                        Select Case sProcess.ProcessName.ToLower
+    '                            Case "sguard64", "sguardsvc64"
+    '                                NtResumeProcess(sProcess.Handle)
+    '                        End Select
+    '                    Next
+    '                End If
+    '            Case 1
+    '                'Shell("sc start ""AntiCheatExpert Service""", AppWinStyle.Hide)
+    '                Dim sg64, sgsvc64 As IntPtr
+    '                For i = 1 To 10
+    '                    sg64 = 0
+    '                    sgsvc64 = 0
+    '                    For Each sProcess In Process.GetProcesses
+    '                        Select Case sProcess.ProcessName.ToLower
+    '                            Case "sguard64"
+    '                                sg64 = sProcess.Handle
+    '                            Case "sguardsvc64"
+    '                                sgsvc64 = sProcess.Handle
+    '                        End Select
+    '                        If sg64 <> 0 And sgsvc64 <> 0 Then
+    '                            printl("NtSuspendProcess(sguard64)=" + NtSuspendProcess(sg64).ToString)
+    '                            printl("NtSuspendProcess(sguardsvc64)=" + NtSuspendProcess(sgsvc64).ToString)
+    '                            Exit Sub
+    '                        End If
+    '                    Next
 
-                        Threading.Thread.Sleep(1000)
-                    Next
-                Case 2
-                    tString = Find_Get_SGuardSub(Application.StartupPath)
-                    If Not IO.File.Exists(CONFIG + "\SGuardSub.zip") Then
-                        If tString = "" Then
-                            MsgBox("未找到替换资源包，请在弹窗确认后下载SGuardSubXXXXXXXX.zip并放置神秘力量V的目录下(无需解压)")
-                            LinkLabel1_LinkClicked(Me, Nothing)
-                            MsgBox("请将下载的SGuardSubXXXXXXXX.zip并放置神秘力量V的目录下，点击确认以继续")
-                            tString = Find_Get_SGuardSub(Application.StartupPath)
-                            If tString = "" Then
-                                MsgBox("未找到替换资源包，SGuard限制将不可用")
-                                CheckBox8.Checked = False
-                                Exit Sub
-                            End If
-                        End If
-                    Else
-                        tString = CONFIG + "\SGuardSub.zip"
-                    End If
+    '                    Threading.Thread.Sleep(1000)
+    '                Next
+    '            Case 2
+    '                tString = Find_Get_SGuardSub(Application.StartupPath)
+    '                If Not IO.File.Exists(CONFIG + "\SGuardSub.zip") Then
+    '                    If tString = "" Then
+    '                        MsgBox("未找到替换资源包，请在弹窗确认后下载SGuardSubXXXXXXXX.zip并放置神秘力量V的目录下(无需解压)")
+    '                        LinkLabel1_LinkClicked(Me, Nothing)
+    '                        MsgBox("请将下载的SGuardSubXXXXXXXX.zip并放置神秘力量V的目录下，点击确认以继续")
+    '                        tString = Find_Get_SGuardSub(Application.StartupPath)
+    '                        If tString = "" Then
+    '                            MsgBox("未找到替换资源包，SGuard限制将不可用")
+    '                            CheckBox8.Checked = False
+    '                            Exit Sub
+    '                        End If
+    '                    End If
+    '                Else
+    '                    tString = CONFIG + "\SGuardSub.zip"
+    '                End If
 
-                    If Not File_Compare(tString, CONFIG + "\SGuardSub.zip", "length") Then
-                        IO.File.Copy(tString, CONFIG + "\SGuardSub.zip")
-                    End If
+    '                If Not File_Compare(tString, CONFIG + "\SGuardSub.zip", "length") Then
+    '                    IO.File.Copy(tString, CONFIG + "\SGuardSub.zip")
+    '                End If
 
-                    If Not IO.File.Exists(CONFIG + "\SGuardSub.zip") Then
-                        MsgBox("未找到替换资源包，SGuard限制将不可用")
-                        CheckBox8.Checked = False
-                        Exit Sub
-                    Else
-                        Shell("sc stop ""AntiCheatExpert Service""", AppWinStyle.Hide)
-                        For i = 1 To 5
-                            Threading.Thread.Sleep(1000)
-                            For Each sProcess In Process.GetProcesses
-                                If sProcess.ProcessName.ToLower = "sguard64" Then
-                                    Continue For
-                                ElseIf sProcess.ProcessName.ToLower = "sguardsvc64" Then
-                                    Continue For
-                                End If
-                            Next
-                            Exit For
-                        Next
-                        If Not IO.Directory.Exists(SGuard_Path + "\x64_bak") Then
-                            Copy_Directory(SGuard_Path + "\x64", SGuard_Path + "\x64_bak")
-                        End If
-                        Try
-                            IO.Directory.Delete(SGuard_Path + "\x64", True)
-                        Catch ex As Exception
-                            printl(ex.Message)
-                        End Try
-                        Try
-                            IO.Compression.ZipFile.ExtractToDirectory(CONFIG + "\SGuardSub.zip", SGuard_Path + "\x64")
-                        Catch ex As Exception
-                            printl(ex.Message)
-                        End Try
-                        Shell("sc start ""AntiCheatExpert Service""", AppWinStyle.Hide)
-                    End If
-            End Select
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
+    '                If Not IO.File.Exists(CONFIG + "\SGuardSub.zip") Then
+    '                    MsgBox("未找到替换资源包，SGuard限制将不可用")
+    '                    CheckBox8.Checked = False
+    '                    Exit Sub
+    '                Else
+    '                    Shell("sc stop ""AntiCheatExpert Service""", AppWinStyle.Hide)
+    '                    For i = 1 To 5
+    '                        Threading.Thread.Sleep(1000)
+    '                        For Each sProcess In Process.GetProcesses
+    '                            If sProcess.ProcessName.ToLower = "sguard64" Then
+    '                                Continue For
+    '                            ElseIf sProcess.ProcessName.ToLower = "sguardsvc64" Then
+    '                                Continue For
+    '                            End If
+    '                        Next
+    '                        Exit For
+    '                    Next
+    '                    If Not IO.Directory.Exists(SGuard_Path + "\x64_bak") Then
+    '                        Copy_Directory(SGuard_Path + "\x64", SGuard_Path + "\x64_bak")
+    '                    End If
+    '                    Try
+    '                        IO.Directory.Delete(SGuard_Path + "\x64", True)
+    '                    Catch ex As Exception
+    '                        printl(ex.Message)
+    '                    End Try
+    '                    Try
+    '                        IO.Compression.ZipFile.ExtractToDirectory(CONFIG + "\SGuardSub.zip", SGuard_Path + "\x64")
+    '                    Catch ex As Exception
+    '                        printl(ex.Message)
+    '                    End Try
+    '                    Shell("sc start ""AntiCheatExpert Service""", AppWinStyle.Hide)
+    '                End If
+    '        End Select
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message)
+    '    End Try
 
-    End Sub
+    'End Sub
 
     Public Delegate Sub Delegate_Update(ByVal inString As String)
 
@@ -1571,14 +1586,14 @@
     End Sub
 
     Private Sub CheckBox8_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox8.CheckedChanged
-        If Not bkCheckBox_Checked Then Exit Sub
+        'If Not bkCheckBox_Checked Then Exit Sub
 
-        Dim tStr = CONFIG + "\NoSGuard"
-        If CheckBox8.Checked Then
-            If IO.File.Exists(tStr) Then IO.File.Delete(tStr)
-        Else
-            IO.File.Create(tStr).Close()
-        End If
+        'Dim tStr = CONFIG + "\NoSGuard"
+        'If CheckBox8.Checked Then
+        '    If IO.File.Exists(tStr) Then IO.File.Delete(tStr)
+        'Else
+        '    IO.File.Create(tStr).Close()
+        'End If
     End Sub
 
     Private Sub Button29_Click(sender As Object, e As EventArgs) Handles Button29.Click
@@ -1597,7 +1612,7 @@
     End Sub
 
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
-        Process.Start("https://share.weiyun.com/EpHKYqu9")
+        'Process.Start("https://share.weiyun.com/EpHKYqu9")
     End Sub
 
     Private Function Find_Get_SGuardSub(ByVal __in_path As String) As String
@@ -1634,10 +1649,10 @@
 
     Private Sub LinkLabel2_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
 
-        If MsgBox("警告，开启SGuard限制会使游戏更不稳定，可能会诱发诸如""3009-游戏安全数据上报异常""等异常" + vbCrLf + "若出现类似异常建议关闭该功能", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
-            IO.File.Create(CONFIG + "\ForceSGuard").Close()
-            Background_Check()
-        End If
+        'If MsgBox("警告，开启SGuard限制会使游戏更不稳定，可能会诱发诸如""3009-游戏安全数据上报异常""等异常" + vbCrLf + "若出现类似异常建议关闭该功能", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+        '    IO.File.Create(CONFIG + "\ForceSGuard").Close()
+        '    Background_Check()
+        'End If
 
     End Sub
 

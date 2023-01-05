@@ -935,10 +935,9 @@ Partial Class Main
         Me.Label6.AutoSize = True
         Me.Label6.Location = New System.Drawing.Point(6, 311)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(509, 48)
+        Me.Label6.Size = New System.Drawing.Size(413, 48)
         Me.Label6.TabIndex = 2
-        Me.Label6.Text = "说明：" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "①启用驱动：设置拦截清单>注册>启动" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "②停用驱动：停止>卸载" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "③如果启动失败，请检查是否已设置拦截清单，及是否已安装CA证书(WIndows 10(" &
-    "20H2)或更高)"
+        Me.Label6.Text = "说明：" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "①启用驱动：设置拦截清单>注册>启动" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "②停用驱动：停止>卸载" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "③如果启动失败，请检查是否已设置拦截清单，记录错误码并在交流群内反馈"
         '
         'gHello
         '
@@ -1833,7 +1832,6 @@ Partial Class Main
         '
         'PictureBox5
         '
-        Me.PictureBox5.Image = Global.神秘力量V.My.Resources.Resources.qun3
         Me.PictureBox5.Location = New System.Drawing.Point(6, 10)
         Me.PictureBox5.Name = "PictureBox5"
         Me.PictureBox5.Size = New System.Drawing.Size(238, 237)
@@ -1899,7 +1897,6 @@ Partial Class Main
         '
         'PictureBox4
         '
-        Me.PictureBox4.Image = Global.神秘力量V.My.Resources.Resources.qun2
         Me.PictureBox4.Location = New System.Drawing.Point(6, 10)
         Me.PictureBox4.Name = "PictureBox4"
         Me.PictureBox4.Size = New System.Drawing.Size(238, 237)
@@ -1965,7 +1962,6 @@ Partial Class Main
         '
         'PictureBox1
         '
-        Me.PictureBox1.Image = Global.神秘力量V.My.Resources.Resources.qun1
         Me.PictureBox1.Location = New System.Drawing.Point(6, 10)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(238, 237)
@@ -2016,7 +2012,6 @@ Partial Class Main
         '
         'PictureBox3
         '
-        Me.PictureBox3.Image = Global.神秘力量V.My.Resources.Resources.zfb
         Me.PictureBox3.Location = New System.Drawing.Point(131, 20)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(100, 135)
@@ -2036,7 +2031,6 @@ Partial Class Main
         '
         'PictureBox2
         '
-        Me.PictureBox2.Image = Global.神秘力量V.My.Resources.Resources.wx
         Me.PictureBox2.Location = New System.Drawing.Point(14, 20)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(100, 135)
@@ -2215,11 +2209,12 @@ Partial Class Main
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(792, 473)
-        Me.Controls.Add(Me.gOther_Contact)
+        Me.Controls.Add(Me.gExtra_Win10MTC)
         Me.Controls.Add(Me.gExtra_Background)
+        Me.Controls.Add(Me.gDriver)
+        Me.Controls.Add(Me.gOther_Contact)
         Me.Controls.Add(Me.gHello)
         Me.Controls.Add(Me.gOther_Donate)
-        Me.Controls.Add(Me.gDriver)
         Me.Controls.Add(Me.gNList)
         Me.Controls.Add(Me.gDList)
         Me.Controls.Add(Me.gExtra_filecheck)
@@ -2233,7 +2228,6 @@ Partial Class Main
         Me.Controls.Add(Me.gExtraInfo)
         Me.Controls.Add(Me.gExtra_BSOD)
         Me.Controls.Add(Me.gExtra_Purge)
-        Me.Controls.Add(Me.gExtra_Win10MTC)
         Me.Controls.Add(Me.gExtra_takeown)
         Me.Controls.Add(Me.gExtra_chkdsk)
         Me.Controls.Add(Me.tv)

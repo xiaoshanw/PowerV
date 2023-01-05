@@ -334,46 +334,46 @@
         End Try
     End Sub
 
-    Public Sub System_Invoker(ByVal __in_path As String)
+    'Public Sub System_Invoker(ByVal __in_path As String)  '202301015
 
-        If Get_Runner.ToLower <> "system" Then
-            Dim PsExec64 = Path_Fix(IO.Path.GetTempPath + "\PsExec64.exe")
-            If Not IO.File.Exists(PsExec64) Then
-                Resources_Decompress(My.Resources.PsExec64, PsExec64)
-            End If
-            'Add EulaAccepted
-            Try
-                Dim reg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("Software\Sysinternals\PsExec", True)
-                reg.SetValue("EulaAccepted", 1, Microsoft.Win32.RegistryValueKind.DWord)
-            Catch ex As Exception
+    '    If Get_Runner.ToLower <> "system" Then
+    '        Dim PsExec64 = Path_Fix(IO.Path.GetTempPath + "\PsExec64.exe")
+    '        If Not IO.File.Exists(PsExec64) Then
+    '            Resources_Decompress(My.Resources.PsExec64, PsExec64)
+    '        End If
+    '        'Add EulaAccepted
+    '        Try
+    '            Dim reg = Microsoft.Win32.Registry.CurrentUser.CreateSubKey("Software\Sysinternals\PsExec", True)
+    '            reg.SetValue("EulaAccepted", 1, Microsoft.Win32.RegistryValueKind.DWord)
+    '        Catch ex As Exception
 
-            End Try
-            Dim tBatch = Path_Fix(IO.Path.GetTempPath + "\PowerV_Runas_SYSTEM.bat")
-            If IO.File.Exists(tBatch) Then IO.File.Delete(tBatch)
-            IO.File.WriteAllText(tBatch, "start """" """ + __in_path + """ -noupgrade -multirun -firstrun -background", System.Text.Encoding.Default)
-            Dim tProcess = New Process()
-            Dim tProcess_Info = New ProcessStartInfo
-            tProcess.StartInfo.FileName = PsExec64
-            tProcess.StartInfo.Arguments = "/accepteula /s /d /i """ + tBatch + """"
-            tProcess.StartInfo.CreateNoWindow = True
-            tProcess.StartInfo.UseShellExecute = False
-            tProcess.StartInfo.RedirectStandardError = False
-            tProcess.StartInfo.RedirectStandardOutput = True
-            tProcess.Start()
-            tProcess.WaitForExit()
-            Threading.Thread.Sleep(3000)
-            Dim eax = 0
-            For Each sProcess In Process.GetProcesses
-                If sProcess.ProcessName = Process.GetCurrentProcess.ProcessName Then
-                    eax += 1
-                End If
-            Next
-            If eax > 1 Then
-                IO.File.Delete(tBatch)
-                Application.Exit()
-            End If
-        End If
-    End Sub
+    '        End Try
+    '        Dim tBatch = Path_Fix(IO.Path.GetTempPath + "\PowerV_Runas_SYSTEM.bat")
+    '        If IO.File.Exists(tBatch) Then IO.File.Delete(tBatch)
+    '        IO.File.WriteAllText(tBatch, "start """" """ + __in_path + """ -noupgrade -multirun -firstrun -background", System.Text.Encoding.Default)
+    '        Dim tProcess = New Process()
+    '        Dim tProcess_Info = New ProcessStartInfo
+    '        tProcess.StartInfo.FileName = PsExec64
+    '        tProcess.StartInfo.Arguments = "/accepteula /s /d /i """ + tBatch + """"
+    '        tProcess.StartInfo.CreateNoWindow = True
+    '        tProcess.StartInfo.UseShellExecute = False
+    '        tProcess.StartInfo.RedirectStandardError = False
+    '        tProcess.StartInfo.RedirectStandardOutput = True
+    '        tProcess.Start()
+    '        tProcess.WaitForExit()
+    '        Threading.Thread.Sleep(3000)
+    '        Dim eax = 0
+    '        For Each sProcess In Process.GetProcesses
+    '            If sProcess.ProcessName = Process.GetCurrentProcess.ProcessName Then
+    '                eax += 1
+    '            End If
+    '        Next
+    '        If eax > 1 Then
+    '            IO.File.Delete(tBatch)
+    '            Application.Exit()
+    '        End If
+    '    End If
+    'End Sub
     Public Function File_Compare(ByVal __in_fileA As String, ByVal __in_fileB As String， ByVal __in_Mode As String) As Boolean
         Const BYTES_TO_READ = 1024 * 10
         If Not IO.File.Exists(__in_fileA) Then Return False
@@ -471,6 +471,16 @@
             CheckFileWithAUTOLST_Recall(sDirectory, __inout_autolst, __inout_exl)
         Next
     End Sub
+
+    Public Function GetvLilitBytes() As Byte()
+        With Environment.OSVersion.Version
+            If .Major = 6 And .Minor = 1 Then
+                Return My.Resources.vLimit_7
+            Else
+                Return My.Resources.vLimit_10
+            End If
+        End With
+    End Function
 
 End Module
 Public Class Update_Class

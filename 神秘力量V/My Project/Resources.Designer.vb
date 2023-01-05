@@ -88,16 +88,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  查找 System.Byte[] 类型的本地化资源。
-        '''</summary>
-        Friend ReadOnly Property EVRootCA() As Byte()
-            Get
-                Dim obj As Object = ResourceManager.GetObject("EVRootCA", resourceCulture)
-                Return CType(obj,Byte())
-            End Get
-        End Property
-        
-        '''<summary>
         '''  查找类似 这是一份使用说明，以便快速上手本软件：
         '''①左侧模块为功能清单，点击即可进入
         '''②右侧模块为对应功能操作面板
@@ -117,31 +107,23 @@ Namespace My.Resources
         '''②驱动拦截-拦截设置-注册驱动服务-启动驱动服务
         '''
         '''更新日志：
-        '''2022-07-06 Ver:0.1.2.2
-        '''1.调整默认拦截清单，新增对pandora.dll（110版本装备推荐功能）的拦截
-        '''2.优化驱动拦截的失败提示
-        '''3.调整祝福语
+        '''2023-01-05 Ver:0.1.2.5
+        '''1.优化驱动拦截功能
+        '''2.删除部分已失效功能
         '''
-        '''2022-01-19 Ver:0.1.2.1
-        '''1.驱动拦截新增通配符功能，可在拦截规则中使用通配符
+        '''2022-12-19 Ver:0.1.2.4
+        '''1.更新驱动拦截签名文件
+        '''2.更新驱动拦截失败时的提示信息
+        '''3.更新软件说明书（Bilibili:https://www.bilibili.com/read/cv20651056）
         '''
-        '''2021-07-20 Ver:0.1.2.0
-        '''1.新增客户端检查功能，可检查游戏完整性，删除多余补丁
-        '''2.优化后台模式，默认禁用SGuard限制 [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''2022-09-20 Ver:0.1.2.3
+        '''1.更新加群链接
+        '''
+        '''2022-07-06 Ver [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Friend ReadOnly Property Hello() As String
             Get
                 Return ResourceManager.GetString("Hello", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  查找 System.Byte[] 类型的本地化资源。
-        '''</summary>
-        Friend ReadOnly Property PsExec64() As Byte()
-            Get
-                Dim obj As Object = ResourceManager.GetObject("PsExec64", resourceCulture)
-                Return CType(obj,Byte())
             End Get
         End Property
         
@@ -178,9 +160,19 @@ Namespace My.Resources
         '''<summary>
         '''  查找 System.Byte[] 类型的本地化资源。
         '''</summary>
-        Friend ReadOnly Property vLimit() As Byte()
+        Friend ReadOnly Property vLimit_10() As Byte()
             Get
-                Dim obj As Object = ResourceManager.GetObject("vLimit", resourceCulture)
+                Dim obj As Object = ResourceManager.GetObject("vLimit_10", resourceCulture)
+                Return CType(obj,Byte())
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Byte[] 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property vLimit_7() As Byte()
+            Get
+                Dim obj As Object = ResourceManager.GetObject("vLimit_7", resourceCulture)
                 Return CType(obj,Byte())
             End Get
         End Property
