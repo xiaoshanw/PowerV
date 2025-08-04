@@ -14,6 +14,8 @@
 
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TextBox11.Text = Get_Version()
+
         If Not IO.Directory.Exists(IO.Path.GetDirectoryName(INI)) Then
             IO.Directory.CreateDirectory(IO.Path.GetDirectoryName(INI))
         End If
@@ -285,6 +287,7 @@
                 Case "驱动拦截 (vLimit)"
                     gDriverInfo.BringToFront()
                 Case "客户端检查(可清理补丁)"
+                    MsgBox("因游戏机制调整，该功能暂不可用，强行使用无法保障客户端完整性")
                     gExtra_filecheck.BringToFront()
                     ComboBox2.Text = "1.游戏自带清单：游戏自带清单文件"
                     ComboBox3.Text = "1.仅图像NPK文件：含官方NPK、图像补丁"
@@ -1740,4 +1743,9 @@
     Private Sub Button33_Click(sender As Object, e As EventArgs) Handles Button33.Click
         Diagnostics.Process.Start("https://jq.qq.com/?_wv=1027&k=RNVZsqLQ")
     End Sub
+
+    Private Sub Button34_Click(sender As Object, e As EventArgs) Handles Button34.Click
+        Diagnostics.Process.Start("http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=DkqaJu4p_bpYq83hNtHaGpXsqGKleqW3&authKey=v8Qrg0WnXCGMKboVfYkOe%2BnfSVHzblYuLflJ%2F80Q9qn%2BZMaMWe3MujWFBtgY%2BHbP&noverify=0&group_code=331208097")
+    End Sub
+
 End Class

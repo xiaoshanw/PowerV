@@ -23,28 +23,28 @@ Partial Class Main
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("设置游戏目录")
-        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("设置", New System.Windows.Forms.TreeNode() {TreeNode1})
-        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("禁用设置 (禁用|解禁)")
-        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("禁用清单 (修改清单|手动模式)")
-        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("常规禁用 (IFEO+ACL)", New System.Windows.Forms.TreeNode() {TreeNode3, TreeNode4})
-        Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("拦截设置 (注册|卸载|启停)")
-        Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("拦截清单 (修改清单)")
-        Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("驱动拦截 (vLimit)", New System.Windows.Forms.TreeNode() {TreeNode6, TreeNode7})
-        Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("后台模式")
-        Dim TreeNode10 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("客户端检查(可清理补丁)")
-        Dim TreeNode11 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("chkdsk磁盘检查")
-        Dim TreeNode12 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("修复文件权限")
-        Dim TreeNode13 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("精简客户端")
-        Dim TreeNode14 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Win10自动维护")
-        Dim TreeNode15 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("重置游戏配置文件")
-        Dim TreeNode16 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("卸载DNF")
-        Dim TreeNode17 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("蓝屏")
-        Dim TreeNode18 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("扩展功能", New System.Windows.Forms.TreeNode() {TreeNode9, TreeNode10, TreeNode11, TreeNode12, TreeNode13, TreeNode14, TreeNode15, TreeNode16, TreeNode17})
-        Dim TreeNode19 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("软件更新")
-        Dim TreeNode20 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("联系我们&提交建议")
-        Dim TreeNode21 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("赞助开发者")
-        Dim TreeNode22 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("其他功能(更新+联系+赞助)", New System.Windows.Forms.TreeNode() {TreeNode19, TreeNode20, TreeNode21})
+        Dim TreeNode23 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("设置游戏目录")
+        Dim TreeNode24 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("设置", New System.Windows.Forms.TreeNode() {TreeNode23})
+        Dim TreeNode25 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("禁用设置 (禁用|解禁)")
+        Dim TreeNode26 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("禁用清单 (修改清单|手动模式)")
+        Dim TreeNode27 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("常规禁用 (IFEO+ACL)", New System.Windows.Forms.TreeNode() {TreeNode25, TreeNode26})
+        Dim TreeNode28 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("拦截设置 (注册|卸载|启停)")
+        Dim TreeNode29 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("拦截清单 (修改清单)")
+        Dim TreeNode30 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("驱动拦截 (vLimit)", New System.Windows.Forms.TreeNode() {TreeNode28, TreeNode29})
+        Dim TreeNode31 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("后台模式")
+        Dim TreeNode32 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("客户端检查(可清理补丁)")
+        Dim TreeNode33 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("chkdsk磁盘检查")
+        Dim TreeNode34 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("修复文件权限")
+        Dim TreeNode35 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("精简客户端")
+        Dim TreeNode36 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Win10自动维护")
+        Dim TreeNode37 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("重置游戏配置文件")
+        Dim TreeNode38 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("卸载DNF")
+        Dim TreeNode39 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("蓝屏")
+        Dim TreeNode40 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("扩展功能", New System.Windows.Forms.TreeNode() {TreeNode31, TreeNode32, TreeNode33, TreeNode34, TreeNode35, TreeNode36, TreeNode37, TreeNode38, TreeNode39})
+        Dim TreeNode41 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("软件更新")
+        Dim TreeNode42 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("联系我们&提交建议")
+        Dim TreeNode43 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("赞助开发者")
+        Dim TreeNode44 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("其他功能(更新+联系+赞助)", New System.Windows.Forms.TreeNode() {TreeNode41, TreeNode42, TreeNode43})
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.Log = New System.Windows.Forms.TextBox()
         Me.gGamePath = New System.Windows.Forms.GroupBox()
@@ -186,6 +186,12 @@ Partial Class Main
         Me.Button27 = New System.Windows.Forms.Button()
         Me.gOther_Contact = New System.Windows.Forms.GroupBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.TextBox20 = New System.Windows.Forms.TextBox()
+        Me.PictureBox6 = New System.Windows.Forms.PictureBox()
+        Me.Button34 = New System.Windows.Forms.Button()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.TextBox21 = New System.Windows.Forms.TextBox()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TextBox18 = New System.Windows.Forms.TextBox()
         Me.PictureBox5 = New System.Windows.Forms.PictureBox()
@@ -246,6 +252,8 @@ Partial Class Main
         Me.gOther_Update.SuspendLayout()
         Me.gOther_Contact.SuspendLayout()
         Me.TabControl1.SuspendLayout()
+        Me.TabPage4.SuspendLayout()
+        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage1.SuspendLayout()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
@@ -347,51 +355,51 @@ Partial Class Main
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.tv.Location = New System.Drawing.Point(12, 12)
         Me.tv.Name = "tv"
-        TreeNode1.Name = "节点1"
-        TreeNode1.Text = "设置游戏目录"
-        TreeNode2.Name = "节点0"
-        TreeNode2.Text = "设置"
-        TreeNode3.Name = "节点3"
-        TreeNode3.Text = "禁用设置 (禁用|解禁)"
-        TreeNode4.Name = "节点4"
-        TreeNode4.Text = "禁用清单 (修改清单|手动模式)"
-        TreeNode5.Name = "节点2"
-        TreeNode5.Text = "常规禁用 (IFEO+ACL)"
-        TreeNode6.Name = "节点6"
-        TreeNode6.Text = "拦截设置 (注册|卸载|启停)"
-        TreeNode7.Name = "节点7"
-        TreeNode7.Text = "拦截清单 (修改清单)"
-        TreeNode8.Name = "节点5"
-        TreeNode8.Text = "驱动拦截 (vLimit)"
-        TreeNode9.Name = "节点9"
-        TreeNode9.Text = "后台模式"
-        TreeNode10.Name = "节点0"
-        TreeNode10.Text = "客户端检查(可清理补丁)"
-        TreeNode11.Name = "节点10"
-        TreeNode11.Text = "chkdsk磁盘检查"
-        TreeNode12.Name = "节点11"
-        TreeNode12.Text = "修复文件权限"
-        TreeNode13.Name = "节点13"
-        TreeNode13.Text = "精简客户端"
-        TreeNode14.Name = "节点14"
-        TreeNode14.Text = "Win10自动维护"
-        TreeNode15.Name = "节点16"
-        TreeNode15.Text = "重置游戏配置文件"
-        TreeNode16.Name = "节点17"
-        TreeNode16.Text = "卸载DNF"
-        TreeNode17.Name = "节点18"
-        TreeNode17.Text = "蓝屏"
-        TreeNode18.Name = "节点8"
-        TreeNode18.Text = "扩展功能"
-        TreeNode19.Name = "节点1"
-        TreeNode19.Text = "软件更新"
-        TreeNode20.Name = "节点2"
-        TreeNode20.Text = "联系我们&提交建议"
-        TreeNode21.Name = "节点3"
-        TreeNode21.Text = "赞助开发者"
-        TreeNode22.Name = "节点0"
-        TreeNode22.Text = "其他功能(更新+联系+赞助)"
-        Me.tv.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode2, TreeNode5, TreeNode8, TreeNode18, TreeNode22})
+        TreeNode23.Name = "节点1"
+        TreeNode23.Text = "设置游戏目录"
+        TreeNode24.Name = "节点0"
+        TreeNode24.Text = "设置"
+        TreeNode25.Name = "节点3"
+        TreeNode25.Text = "禁用设置 (禁用|解禁)"
+        TreeNode26.Name = "节点4"
+        TreeNode26.Text = "禁用清单 (修改清单|手动模式)"
+        TreeNode27.Name = "节点2"
+        TreeNode27.Text = "常规禁用 (IFEO+ACL)"
+        TreeNode28.Name = "节点6"
+        TreeNode28.Text = "拦截设置 (注册|卸载|启停)"
+        TreeNode29.Name = "节点7"
+        TreeNode29.Text = "拦截清单 (修改清单)"
+        TreeNode30.Name = "节点5"
+        TreeNode30.Text = "驱动拦截 (vLimit)"
+        TreeNode31.Name = "节点9"
+        TreeNode31.Text = "后台模式"
+        TreeNode32.Name = "节点0"
+        TreeNode32.Text = "客户端检查(可清理补丁)"
+        TreeNode33.Name = "节点10"
+        TreeNode33.Text = "chkdsk磁盘检查"
+        TreeNode34.Name = "节点11"
+        TreeNode34.Text = "修复文件权限"
+        TreeNode35.Name = "节点13"
+        TreeNode35.Text = "精简客户端"
+        TreeNode36.Name = "节点14"
+        TreeNode36.Text = "Win10自动维护"
+        TreeNode37.Name = "节点16"
+        TreeNode37.Text = "重置游戏配置文件"
+        TreeNode38.Name = "节点17"
+        TreeNode38.Text = "卸载DNF"
+        TreeNode39.Name = "节点18"
+        TreeNode39.Text = "蓝屏"
+        TreeNode40.Name = "节点8"
+        TreeNode40.Text = "扩展功能"
+        TreeNode41.Name = "节点1"
+        TreeNode41.Text = "软件更新"
+        TreeNode42.Name = "节点2"
+        TreeNode42.Text = "联系我们&提交建议"
+        TreeNode43.Name = "节点3"
+        TreeNode43.Text = "赞助开发者"
+        TreeNode44.Name = "节点0"
+        TreeNode44.Text = "其他功能(更新+联系+赞助)"
+        Me.tv.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode24, TreeNode27, TreeNode30, TreeNode40, TreeNode44})
         Me.tv.Size = New System.Drawing.Size(230, 449)
         Me.tv.TabIndex = 7
         '
@@ -1793,6 +1801,7 @@ Partial Class Main
         Me.TabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TabControl1.Controls.Add(Me.TabPage4)
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Controls.Add(Me.TabPage3)
@@ -1801,6 +1810,72 @@ Partial Class Main
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(520, 339)
         Me.TabControl1.TabIndex = 17
+        '
+        'TabPage4
+        '
+        Me.TabPage4.Controls.Add(Me.TextBox20)
+        Me.TabPage4.Controls.Add(Me.PictureBox6)
+        Me.TabPage4.Controls.Add(Me.Button34)
+        Me.TabPage4.Controls.Add(Me.Label34)
+        Me.TabPage4.Controls.Add(Me.TextBox21)
+        Me.TabPage4.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage4.Name = "TabPage4"
+        Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage4.Size = New System.Drawing.Size(512, 313)
+        Me.TabPage4.TabIndex = 3
+        Me.TabPage4.Text = "ProjectV_IV"
+        Me.TabPage4.UseVisualStyleBackColor = True
+        '
+        'TextBox20
+        '
+        Me.TextBox20.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TextBox20.Location = New System.Drawing.Point(250, 8)
+        Me.TextBox20.Multiline = True
+        Me.TextBox20.Name = "TextBox20"
+        Me.TextBox20.ReadOnly = True
+        Me.TextBox20.Size = New System.Drawing.Size(246, 299)
+        Me.TextBox20.TabIndex = 28
+        Me.TextBox20.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Welcome to Project-V" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.TextBox20.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'PictureBox6
+        '
+        Me.PictureBox6.Image = Global.神秘力量V.My.Resources.Resources.qun4
+        Me.PictureBox6.Location = New System.Drawing.Point(6, 10)
+        Me.PictureBox6.Name = "PictureBox6"
+        Me.PictureBox6.Size = New System.Drawing.Size(238, 237)
+        Me.PictureBox6.TabIndex = 27
+        Me.PictureBox6.TabStop = False
+        '
+        'Button34
+        '
+        Me.Button34.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Button34.Location = New System.Drawing.Point(6, 282)
+        Me.Button34.Name = "Button34"
+        Me.Button34.Size = New System.Drawing.Size(238, 23)
+        Me.Button34.TabIndex = 26
+        Me.Button34.Text = "申请进行交♂流"
+        Me.Button34.UseVisualStyleBackColor = True
+        '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.Location = New System.Drawing.Point(14, 259)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(41, 12)
+        Me.Label34.TabIndex = 24
+        Me.Label34.Text = "群号："
+        '
+        'TextBox21
+        '
+        Me.TextBox21.Location = New System.Drawing.Point(62, 255)
+        Me.TextBox21.Name = "TextBox21"
+        Me.TextBox21.ReadOnly = True
+        Me.TextBox21.Size = New System.Drawing.Size(182, 21)
+        Me.TextBox21.TabIndex = 25
+        Me.TextBox21.Text = "331208097"
         '
         'TabPage1
         '
@@ -1827,7 +1902,7 @@ Partial Class Main
         Me.TextBox18.ReadOnly = True
         Me.TextBox18.Size = New System.Drawing.Size(246, 299)
         Me.TextBox18.TabIndex = 23
-        Me.TextBox18.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Welcome to Project-V" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.TextBox18.Text = "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "R.I.P" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "2022.09 ~ 2025.08"
         Me.TextBox18.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'PictureBox5
@@ -2214,8 +2289,9 @@ Partial Class Main
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(792, 473)
-        Me.Controls.Add(Me.gOther_Contact)
+        Me.Controls.Add(Me.gOther_Update)
         Me.Controls.Add(Me.gOther_Donate)
+        Me.Controls.Add(Me.gOther_Contact)
         Me.Controls.Add(Me.gExtra_Win10MTC)
         Me.Controls.Add(Me.gExtra_Background)
         Me.Controls.Add(Me.gDriver)
@@ -2228,7 +2304,6 @@ Partial Class Main
         Me.Controls.Add(Me.gExtra_DNFCFG)
         Me.Controls.Add(Me.gDriverInfo)
         Me.Controls.Add(Me.gNormal)
-        Me.Controls.Add(Me.gOther_Update)
         Me.Controls.Add(Me.gNormalInfo)
         Me.Controls.Add(Me.gExtraInfo)
         Me.Controls.Add(Me.gExtra_BSOD)
@@ -2280,6 +2355,9 @@ Partial Class Main
         Me.gOther_Update.PerformLayout()
         Me.gOther_Contact.ResumeLayout(False)
         Me.TabControl1.ResumeLayout(False)
+        Me.TabPage4.ResumeLayout(False)
+        Me.TabPage4.PerformLayout()
+        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2479,4 +2557,10 @@ Partial Class Main
     Friend WithEvents TextBox17 As TextBox
     Friend WithEvents TabPage3 As TabPage
     Friend WithEvents TextBox15 As TextBox
+    Friend WithEvents TabPage4 As TabPage
+    Friend WithEvents TextBox20 As TextBox
+    Friend WithEvents PictureBox6 As PictureBox
+    Friend WithEvents Button34 As Button
+    Friend WithEvents Label34 As Label
+    Friend WithEvents TextBox21 As TextBox
 End Class

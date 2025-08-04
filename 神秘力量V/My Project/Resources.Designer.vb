@@ -107,6 +107,9 @@ Namespace My.Resources
         '''②驱动拦截-拦截设置-注册驱动服务-启动驱动服务
         '''
         '''更新日志：
+        '''2023-01-16 Ver:0.1.2.6
+        '''1.修复部分图片不显示的BUG
+        '''
         '''2023-01-05 Ver:0.1.2.5
         '''1.优化驱动拦截功能
         '''2.删除部分已失效功能
@@ -116,14 +119,31 @@ Namespace My.Resources
         '''2.更新驱动拦截失败时的提示信息
         '''3.更新软件说明书（Bilibili:https://www.bilibili.com/read/cv20651056）
         '''
-        '''2022-09-20 Ver:0.1.2.3
-        '''1.更新加群链接
-        '''
-        '''2022-07-06 Ver [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''2022-09 [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Friend ReadOnly Property Hello() As String
             Get
                 Return ResourceManager.GetString("Hello", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property proj() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("proj", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Byte[] 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property PsExec64() As Byte()
+            Get
+                Dim obj As Object = ResourceManager.GetObject("PsExec64", resourceCulture)
+                Return CType(obj,Byte())
             End Get
         End Property
         
@@ -153,6 +173,16 @@ Namespace My.Resources
         Friend ReadOnly Property qun3() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("qun3", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找 System.Drawing.Bitmap 类型的本地化资源。
+        '''</summary>
+        Friend ReadOnly Property qun4() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("qun4", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
